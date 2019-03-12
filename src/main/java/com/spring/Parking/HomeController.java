@@ -68,7 +68,7 @@ public class HomeController {
 		
 		System.out.println("test register page");
 		
-		return "register";
+		return "/users/register";
 	}
 	
 }
