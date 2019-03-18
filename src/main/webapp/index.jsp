@@ -54,7 +54,7 @@
 			<span style="color: yellow;">Q</span>-PARK
 		</h1>
 		<form>
-			 <input type="button" value="회원가입" onclick="location.href='Register'" style="float:right; cursor:pointer; font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
+			 <input type="button" value="회원가입" onclick="location.href='step1'" style="float:right; cursor:pointer; font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
 			 <input type="button" value="로그인" onclick="location.href='login'" style="float:right; cursor:pointer;font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
 		</form>
 	</div>

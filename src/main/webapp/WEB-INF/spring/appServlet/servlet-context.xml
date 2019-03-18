@@ -29,7 +29,7 @@
 	</beans:bean>
 
 	<context:component-scan
-		base-package="com.spring.Parking" />
+		base-package="com.spring.Parking, , com.spring.dao , com.user.service" />
 
 
 
