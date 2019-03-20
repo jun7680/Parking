@@ -53,6 +53,14 @@
             )
         ]]>
     </insert>
+    
+    <select id="amountCheck" resultType="com.spring.dto.AmountVO">
+	 <![CDATA[
+	 select AREA,
+	 		AMOUNT
+	 from PayInformation where ENDTIME IS NULL
+      ]]>
+	</select>
 
 
  

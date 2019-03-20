@@ -12,21 +12,21 @@ import com.spring.util.RegisterRequest;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	
-	 @Resource(name="userDAO")
-	    private MemberDAO userDAO;
-	 
-	    @Override
-	    public void register(RegisterRequest regReq) throws Exception {
-	    	MemberVO email = userDAO.selectByEmail(regReq.getEmail());
-	        if(email!=null) {
-	            throw new AlreadyExistingEmailException(regReq.getEmail()+" is duplicate email.");
-	        }
-	        MemberVO id = userDAO.selectById(regReq.getId());
-	        if(id!=null) {
-	            throw new AlreadyExistingIdException(regReq.getId()+" is duplicate id.");
-	        }
-	        userDAO.insertUser(regReq);
-	    }
+
+	@Resource(name = "userDAO")
+	private MemberDAO userDAO;
+
+	@Override
+	public void register(RegisterRequest regReq) throws Exception {
+		MemberVO email = userDAO.selectByEmail(regReq.getEmail());
+		if (email != null) {
+			throw new AlreadyExistingEmailException(regReq.getEmail() + " is duplicate email.");
+		}
+		MemberVO id = userDAO.selectById(regReq.getId());
+		if (id != null) {
+			throw new AlreadyExistingIdException(regReq.getId() + " is duplicate id.");
+		}
+		userDAO.insertUser(regReq);
+	}
 
 }

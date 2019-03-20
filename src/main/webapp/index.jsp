@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="false" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,18 +55,19 @@
 			<span style="color: yellow;">Q</span>-PARK
 		</h1>
 		<form>
-			 <input type="button" value="ȸ������" onclick="location.href='step1'" style="float:right; cursor:pointer; font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
-			 <input type="button" value="�α���" onclick="location.href='login'" style="float:right; cursor:pointer;font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
+			 <input type="button" value="회원가입" onclick="location.href='step1'" style="float:right; cursor:pointer; font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
+			 <input type="button" value="로그인" onclick="location.href='login'" style="float:right; cursor:pointer;font-size:18px; font-weight:bold; border:0; outline:0; background-color:white">
 		</form>
 	</div>
 
 	<ul id="nav">
-		<li><a href="">����</a></li>
-		<li><a href="">�̿���</a></li>
-		<li><a href="">������ã��</a></li>
-		<li><a href="">ȸ��Ұ�</a></li>
+		<li><a href="">주차</a></li>
+		<li><a href="">이용방법</a></li>
+		<li><a href="">주차장찾기</a></li>
+		<li><a href="check">주차요금 확인</a></li>
+		<li><a href="">회사소개</a></li>
 		<li><a href="">Q&A</a></li>
-		<li><a href="">��������</a></li>
+		<li><a href="">고객센터</a></li>
 	</ul>
 
 
