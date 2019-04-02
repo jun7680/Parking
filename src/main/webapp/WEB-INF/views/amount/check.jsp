@@ -9,6 +9,11 @@
 
 <meta charset="UTF-8">
 <title>주차요금 확인</title>
+
+<script>
+
+
+</script>
 <style>
 #Wrapper1 {
 	width: 100%
@@ -149,12 +154,15 @@
 		</c:if>
 		<c:if test="${AmountList.AREA ==3}">
 			<c:set var="AREA3" value="${AmountList.AREA}"></c:set>
+			<c:set var="AMOUNT3" value="${AmountList.AMOUNT }"></c:set>
 		</c:if>
 		<c:if test="${AmountList.AREA ==4}">
 			<c:set var="AREA4" value="${AmountList.AREA}"></c:set>
+			<c:set var="AMOUNT4" value="${AmountList.AMOUNT }"></c:set>
 		</c:if>
 		<c:if test="${AmountList.AREA ==5}">
 			<c:set var="AREA5" value="${AmountList.AREA}"></c:set>
+			<c:set var="AMOUNT5" value="${AmountList.AMOUNT }"></c:set>
 		</c:if>
 		<c:if test="${AmountList.AREA ==6}">
 			<c:set var="AREA6" value="${AmountList.AREA}"></c:set>
@@ -171,7 +179,7 @@
 
 
 	<div id="Wrapper1">
-		<div id="Area1">
+		<div id="Area1" onclick="alert(${AMOUNT1})">
 			<c:if test="${AREA1 != null}">
 				<p>
 					<span style="font-size: 25pt; font-weight: bold">${AREA1}구역</span><br>
