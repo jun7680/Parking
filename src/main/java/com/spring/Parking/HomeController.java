@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amount.service.AmountCheckService;
 import com.spring.dto.AmountVO;
+import com.spring.dto.MemberVO;
 import com.spring.exception.AlreadyExistingEmailException;
 import com.spring.exception.AlreadyExistingIdException;
 import com.spring.util.RegisterRequest;
@@ -35,25 +38,35 @@ import com.user.service.UserService;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@Inject
 	private AmountCheckService Amountservice;
+	//private UserService userSer2;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	HttpSession session=null;
+	MemberVO login;
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model, HttpServletRequest req) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		System.out.println("test");
+		session = req.getSession();
+		
+		if(login == null) {
+			session.setAttribute("member",null);		
+			System.out.println("login test f :" + session);
+			System.out.println("login test2 f:" + login);
+			
+		}else {
+			session.setAttribute("member", login);
+			model.addAttribute("member", login);
+			System.out.println("login test :" + session);
+			System.out.println("login test2 :" + login);
+			
+		}
 
 		return "home";
 	}
@@ -71,20 +84,38 @@ public class HomeController {
 
 		System.out.println("test login page");
 
-		return "login";
+		return "/login/login";
+	}
+	@Resource(name = "userService")
+	private UserService userSer2;
+
+	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
+	public String LoginCheck(MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		session = req.getSession();
+		
+		login = userSer2.login(vo);
+		
+		if(login == null) {
+			session.setAttribute("member",null);
+		}else {
+			session.setAttribute("member",login);
+		}
+		System.out.println("login test 1 ->"+login);
+
+		return "/login/loginCheck";
 	}
 
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
 	public String AmountCheck(Locale locale, Model model) throws Exception {
 
 		List<AmountVO> AmountList = Amountservice.selectAmount();
-
+			
 		model.addAttribute("AmountList", AmountList);
-
 		return "/amount/check";
 	}
 
-	@RequestMapping(value = "/step1", method = RequestMethod.GET)
+	@RequestMapping("/step1")
 	public String Register(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
@@ -124,8 +155,8 @@ public class HomeController {
 	public ModelAndView step3(RegisterRequest regReq, Errors errors) throws Exception {
 		new RegisterRequestValidator().validate(regReq, errors);
 
-		regReq.setCpw(br.encode(regReq.getCpw()));
-		regReq.setPw(br.encode(regReq.getPw()));
+//		regReq.setCpw(br.encode(regReq.getCpw()));
+//		regReq.setPw(br.encode(regReq.getPw()));
 
 		if (errors.hasErrors()) {
 			ModelAndView mv = new ModelAndView("register/step2");
@@ -134,11 +165,11 @@ public class HomeController {
 		try {
 			userSer.register(regReq);
 		} catch (AlreadyExistingEmailException e) {
-			errors.rejectValue("email", "duplicate", "ÀÌ¹Ì °¡ÀÔµÈ ÀÌ¸ŞÀÏÀÔ´Ï´Ù.");
+			errors.rejectValue("email", "duplicate", "ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ Emailì…ë‹ˆë‹¤.");
 			ModelAndView mv = new ModelAndView("/register/step2");
 			return mv;
 		} catch (AlreadyExistingIdException e) {
-			errors.rejectValue("id", "duplicate", "ÀÌ¹Ì °¡ÀÔµÈ ¾ÆÀÌµğÀÔ´Ï´Ù.");
+			errors.rejectValue("id", "duplicate", "ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ IDì…ë‹ˆë‹¤.");
 			ModelAndView mv = new ModelAndView("/register/step2");
 			return mv;
 		}

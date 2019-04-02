@@ -19,5 +19,12 @@ public class MemberDAO extends AbstractDAO {
 	public void insertUser(RegisterRequest regReq) {
 		insert("user.register", regReq);
 	}
+	
+	public MemberVO login(MemberVO vo) throws Exception{
+		return (MemberVO) selectOne("user.login", vo);
+	}
+	
+	
+	
 
 }

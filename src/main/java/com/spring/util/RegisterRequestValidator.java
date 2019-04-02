@@ -31,19 +31,21 @@ public class RegisterRequestValidator implements Validator {
         RegisterRequest regReq = (RegisterRequest) target;
         
         if(regReq.getEmail() == null || regReq.getEmail().trim().isEmpty()) {
-            errors.rejectValue("email", "required", "ÇÊ¼ö Á¤º¸ ÀÔ´Ï´Ù.");
+            errors.rejectValue("email", "required", "ì´ë©”ì¼ì€ í•„ìˆ˜ í•­ëª© ì…ë‹ˆë‹¤.");
         } else {
             Matcher matcher = pattern.matcher(regReq.getEmail());
             if(!matcher.matches()) {
-                errors.rejectValue("email", "bad", "¿Ã¹Ù¸£Áö ¾Ê´Â Çü½ÄÀÔ´Ï´Ù.");
-            }
+                errors.rejectValue("email", "bad", "ì´ë©”ì¼ì„");
+                
+               
+;            }
         }
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required", "ÇÊ¼ö Á¤º¸ ÀÔ´Ï´Ù.");
-        ValidationUtils.rejectIfEmpty(errors, "pw", "required", "ÇÊ¼ö Á¤º¸ ÀÔ´Ï´Ù.");
-        ValidationUtils.rejectIfEmpty(errors, "cpw", "required", "ÇÊ¼ö Á¤º¸ ÀÔ´Ï´Ù.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required", "ì´ë¦„ì„ ì…ë ¥í•´ì£¼ì„¸ìš”");
+        ValidationUtils.rejectIfEmpty(errors, "pw", "required", "í•„ìˆ˜í•­ëª©ì…ë‹ˆë‹¤.");
+        ValidationUtils.rejectIfEmpty(errors, "cpw", "required", "í•„ìˆ˜í•­ëª©ì…ë‹ˆë‹¤.");
         if(!regReq.getPw().isEmpty()) {
             if(!regReq.isPwEqualToCheckPw()) {
-                errors.rejectValue("cpw", "nomatch", "ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+                errors.rejectValue("cpw", "nomatch", "PWê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             }
         }
     }

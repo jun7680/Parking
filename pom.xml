@@ -148,6 +148,11 @@
 			<version>6.0.5</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.7</version>
+		</dependency>
 
 
 		<!-- MyBatis 3.4.1 -->

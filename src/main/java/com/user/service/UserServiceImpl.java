@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
 		userDAO.insertUser(regReq);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		return userDAO.login(vo);
+	}
+
 }

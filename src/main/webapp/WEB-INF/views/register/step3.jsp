@@ -1,15 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="false"%>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>È¸¿ø°¡ÀÔ ¿Ï·á</title>
+<title>íšŒì›ê°€ìž… ì™„ë£Œ</title>
+
 </head>
 <body>
-<div class="alert alert-success">
-        ÃàÇÏµå¸³´Ï´Ù, ¼º°øÀûÀ¸·Î È¸¿ø°¡ÀÔÀÌ µÇ¾ú½À´Ï´Ù!
-    </div>
-
+	<script type="text/javascript">
+		alert("íšŒì›ê°€ìž…ì— ì„±ê³µí•˜ì…¨ìŠµë‹ˆë‹¤.");
+		document.location.href = "index.jsp";
+	</script>
 </body>
 </html>

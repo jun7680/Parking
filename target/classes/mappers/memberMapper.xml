@@ -61,6 +61,16 @@
 	 from PayInformation where ENDTIME IS NULL
       ]]>
 	</select>
+	
+	<select id="login" resultType="com.spring.dto.MemberVO">
+	<![CDATA[
+	 select ID,
+	 		NAME,
+	 		EMAIL
+	 from MemberData where ID= #{ID} and PW = #{PW}
+      ]]>
+	
+	</select>
 
 
  
