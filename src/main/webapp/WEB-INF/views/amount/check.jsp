@@ -2,24 +2,40 @@
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta http-equiv="refresh" content="59">
 
 <meta charset="UTF-8">
 <title>주차요금 확인</title>
 
 <script>
+var id;
+$(document).ready(function(){
+	$('body').click(function(e){
+		id = e.target.getAttribute('id');
+		if(id == 'Area1') alert(document.getElementById('textAmount1').innerHTML);
+		if(id == 'Area2') alert(document.getElementById('textAmount2').innerHTML);
+		if(id == 'Area3') alert(document.getElementById('textAmount3').innerHTML);
+		if(id == 'Area4') alert(document.getElementById('textAmount4').innerHTML);
+		if(id == 'Area5') alert(document.getElementById('textAmount5').innerHTML);
+		if(id == 'Area6') alert(document.getElementById('textAmount6').innerHTML);
+		
+	});	
+});
 
 
-</script>
+	</script>
 <style>
-#Wrapper1 {
+.Wrapper1 {
 	width: 100%
 }
 
-#Wrapper2 {
+.Wrapper2 {
 	width: 100%
 }
 
@@ -178,18 +194,18 @@
 	</c:forEach>
 
 
-	<div id="Wrapper1">
-		<div id="Area1" onclick="alert(${AMOUNT1})">
+	<div class="Wrapper1">
+		<div id="Area1">
 			<c:if test="${AREA1 != null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA1}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT1}원</span>
+					<span id="textArea1" style="font-size: 25pt; font-weight: bold">${AREA1}구역</span><br>
+					<br> <span id="textAmount1"style="font-size: 20pt; font-weight: bold">${AMOUNT1}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA1 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea1" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount1" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -197,29 +213,29 @@
 		<div id="Area2">
 
 			<c:if test="${AREA2 != null}">
-			<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA2}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT2}원</span>
+				<p>
+					<span id="textArea2"  style="font-size: 25pt; font-weight: bold">${AREA2}구역</span><br>
+					<br> <span id="textAmount2" style="font-size: 20pt; font-weight: bold">${AMOUNT2}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA2 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea2" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id ="textAmount2" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
 		<div id="Area3">
 			<c:if test="${AREA3 != null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA3}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT3}원</span>
+					<span id="textArea3" style="font-size: 25pt; font-weight: bold">${AREA3}구역</span><br>
+					<br> <span id="textAmount3" style="font-size: 20pt; font-weight: bold">${AMOUNT3}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA3 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id ="textArea3" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount3" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -227,21 +243,21 @@
 
 	</div>
 
-	<div id="Wrapper2">
+	<div class="Wrapper2">
 
 		<div id="Area4">
 
 
 			<c:if test="${AREA4 != null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA4}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT4}원</span>
+					<span id="textArea4" style="font-size: 25pt; font-weight: bold">${AREA4}구역</span><br>
+					<br> <span id = "textAmount4" style="font-size: 20pt; font-weight: bold">${AMOUNT4}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA4 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id = "textArea4" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id = "textAmount4" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -250,14 +266,14 @@
 
 			<c:if test="${AREA5 != null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA5}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT5}원</span>
+					<span id = "textArea5" style="font-size: 25pt; font-weight: bold">${AREA5}구역</span><br>
+					<br> <span id = "textAmount5" style="font-size: 20pt; font-weight: bold">${AMOUNT5}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA5 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id = "textArea5" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id = "textAmount5" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -265,14 +281,14 @@
 		<div id="Area6">
 			<c:if test="${AREA6 != null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span>
+					<span id = "textArea6" style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
+					<br> <span id = "textAmount6" style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA6 == null}">
 				<p>
-					<span style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id = "textArea6" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id = "textAmount6" style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
