@@ -86,6 +86,25 @@ public class HomeController {
 
 		return "/login/login";
 	}
+	
+	@RequestMapping(value = "/parkingStart", method = RequestMethod.POST)
+	public String inputCarNumber(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+
+		String formattedDate = dateFormat.format(date);
+
+		model.addAttribute("serverTime", formattedDate);
+
+		System.out.println("test login page");
+
+		return "/amount/carNumberCheck";
+	}
+	
+	
+	
 	@Resource(name = "userService")
 	private UserService userSer2;
 

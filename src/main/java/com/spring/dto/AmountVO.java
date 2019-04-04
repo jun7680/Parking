@@ -7,8 +7,15 @@ public class AmountVO {
 	
 	private String AMOUNT;
 	private String AREA;
+	private String CARNUMBER;
 	
 	
+	public String getCARNUMBER() {
+		return CARNUMBER;
+	}
+	public void setCARNUMBER(String cARNUMBER) {
+		CARNUMBER = cARNUMBER;
+	}
 	public String getAMOUNT() {
 		return AMOUNT;
 	}

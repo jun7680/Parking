@@ -3,7 +3,7 @@
 
 <mapper namespace="user">
 
-  <select id="selectByEmail" resultType="com.spring.dto.MemberVO">
+	<select id="selectByEmail" resultType="com.spring.dto.MemberVO">
    <![CDATA[
           SELECT
               EMAIL,
@@ -13,9 +13,9 @@
           WHERE
               EMAIL = #{email}       
       ]]>
-  </select>
-  
-  <select id="selectById" resultType="com.spring.dto.MemberVO">
+	</select>
+
+	<select id="selectById" resultType="com.spring.dto.MemberVO">
         <![CDATA[
           SELECT
               ID,
@@ -25,10 +25,10 @@
           WHERE
               ID = #{id}       
       ]]>
-    </select>
-    
-    
-    <insert id="register">
+	</select>
+
+
+	<insert id="register">
         <![CDATA[
             INSERT INTO MemberData
             (
@@ -52,16 +52,17 @@
            
             )
         ]]>
-    </insert>
-    
-    <select id="amountCheck" resultType="com.spring.dto.AmountVO">
+	</insert>
+
+	<select id="amountCheck" resultType="com.spring.dto.AmountVO">
 	 <![CDATA[
 	 select AREA,
-	 		AMOUNT
+	 		AMOUNT,
+	 		CARNUMBER
 	 from PayInformation where ENDTIME IS NULL
       ]]>
 	</select>
-	
+
 	<select id="login" resultType="com.spring.dto.MemberVO">
 	<![CDATA[
 	 select ID,
@@ -69,13 +70,13 @@
 	 		EMAIL
 	 from MemberData where ID= #{ID} and PW = #{PW}
       ]]>
-	
+
 	</select>
 
 
- 
 
-  
-    
+
+
+
 </mapper>
 
