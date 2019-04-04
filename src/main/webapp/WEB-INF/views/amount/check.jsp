@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 
 <!DOCTYPE html>
@@ -14,22 +15,26 @@
 <title>주차요금 확인</title>
 
 <script>
-var id;
-$(document).ready(function(){
-	$('body').click(function(e){
-		id = e.target.getAttribute('id');
-		if(id == 'Area1') alert(document.getElementById('textAmount1').innerHTML);
-		if(id == 'Area2') alert(document.getElementById('textAmount2').innerHTML);
-		if(id == 'Area3') alert(document.getElementById('textAmount3').innerHTML);
-		if(id == 'Area4') alert(document.getElementById('textAmount4').innerHTML);
-		if(id == 'Area5') alert(document.getElementById('textAmount5').innerHTML);
-		if(id == 'Area6') alert(document.getElementById('textAmount6').innerHTML);
-		
-	});	
-});
+	var id;
+	$(document).ready(function() {
+		$('body').click(function(e) {
+			id = e.target.getAttribute('id');
+			if (id == 'Area1')
+				alert(document.getElementById('textAmount1').innerHTML);
+			if (id == 'Area2')
+				alert(document.getElementById('textAmount2').innerHTML);
+			if (id == 'Area3')
+				alert(document.getElementById('textAmount3').innerHTML);
+			if (id == 'Area4')
+				alert(document.getElementById('textAmount4').innerHTML);
+			if (id == 'Area5')
+				alert(document.getElementById('textAmount5').innerHTML);
+			if (id == 'Area6')
+				alert(document.getElementById('textAmount6').innerHTML);
 
-
-	</script>
+		});
+	});
+</script>
 <style>
 .Wrapper1 {
 	width: 100%
@@ -191,7 +196,7 @@ $(document).ready(function(){
 			<c:set var="CARNUMBER6" value="${AmountList.CARNUMBER }"></c:set>
 		</c:if>
 
-	
+
 
 
 	</c:forEach>
@@ -202,14 +207,17 @@ $(document).ready(function(){
 			<c:if test="${AREA1 != null && CARNUMBER1 != null}">
 				<p>
 					<span id="textArea1" style="font-size: 25pt; font-weight: bold">${AREA1}구역</span><br>
-					<br> <span id="textAmount1"style="font-size: 20pt; font-weight: bold">${AMOUNT1}원</span><br>
-					<br> <span id = "textCarNumber1" style="font-size: 20pt; font-weight: bold">${CARNUMBER1}</span>
+					<br> <span id="textAmount1"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT1}원</span><br>
+					<br> <span id="textCarNumber1"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER1}</span>
 				</p>
 			</c:if>
-			<c:if test="${AREA1 == null || CARNUMBER1 != null}">
+			<c:if test="${AREA1 == null || CARNUMBER1 == null}">
 				<p>
 					<span id="textArea1" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id="textAmount1" style="font-size: 20pt; font-weight: bold">0원</span>
+					<br> <span id="textAmount1"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -218,15 +226,18 @@ $(document).ready(function(){
 
 			<c:if test="${AREA2 != null && CARNUMBER2 != null}">
 				<p>
-					<span id="textArea2"  style="font-size: 25pt; font-weight: bold">${AREA2}구역</span><br>
-					<br> <span id="textAmount2" style="font-size: 20pt; font-weight: bold">${AMOUNT2}원</span><br>
-					<br> <span id = "textCarNumber2" style="font-size: 20pt; font-weight: bold">${CARNUMBER2}</span>
+					<span id="textArea2" style="font-size: 25pt; font-weight: bold">${AREA2}구역</span><br>
+					<br> <span id="textAmount2"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT2}원</span><br>
+					<br> <span id="textCarNumber2"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER2}</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA2 == null || CARNUMBER2 == null}">
 				<p>
 					<span id="textArea2" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id ="textAmount2" style="font-size: 20pt; font-weight: bold">0원</span>
+					<br> <span id="textAmount2"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -234,14 +245,17 @@ $(document).ready(function(){
 			<c:if test="${AREA3 != null && CARNUMBER3 != null}">
 				<p>
 					<span id="textArea3" style="font-size: 25pt; font-weight: bold">${AREA3}구역</span><br>
-					<br> <span id="textAmount3" style="font-size: 20pt; font-weight: bold">${AMOUNT3}원</span><br>
-					<br> <span id = "textCarNumber3" style="font-size: 20pt; font-weight: bold">${CARNUMBER3}</span>
+					<br> <span id="textAmount3"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT3}원</span><br>
+					<br> <span id="textCarNumber3"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER3}</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA3 == null || CARNUMBER3 == null}">
 				<p>
-					<span id ="textArea3" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id="textAmount3" style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea3" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount3"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -257,14 +271,17 @@ $(document).ready(function(){
 			<c:if test="${AREA4 != null && CARNUMBER4 != null}">
 				<p>
 					<span id="textArea4" style="font-size: 25pt; font-weight: bold">${AREA4}구역</span><br>
-					<br> <span id = "textAmount4" style="font-size: 20pt; font-weight: bold">${AMOUNT4}원</span><br>
-					<br> <span id = "textCarNumber4" style="font-size: 20pt; font-weight: bold">${CARNUMBER4}</span>
+					<br> <span id="textAmount4"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT4}원</span><br>
+					<br> <span id="textCarNumber4"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER4}</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA4 == null || CARNUMBER4 == null}">
 				<p>
-					<span id = "textArea4" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id = "textAmount4" style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea4" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount4"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -273,15 +290,18 @@ $(document).ready(function(){
 
 			<c:if test="${AREA5 != null && CARNUMBER5 != null}">
 				<p>
-					<span id = "textArea5" style="font-size: 25pt; font-weight: bold">${AREA5}구역</span><br>
-					<br> <span id = "textAmount5" style="font-size: 20pt; font-weight: bold">${AMOUNT5}원</span><br>
-					<br> <span id = "textCarNumber5" style="font-size: 20pt; font-weight: bold">${CARNUMBER5}</span>
+					<span id="textArea5" style="font-size: 25pt; font-weight: bold">${AREA5}구역</span><br>
+					<br> <span id="textAmount5"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT5}원</span><br>
+					<br> <span id="textCarNumber5"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER5}</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA5 == null || CARNUMBER5 == null}">
 				<p>
-					<span id = "textArea5" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id = "textAmount5" style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea5" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount5"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
@@ -289,33 +309,43 @@ $(document).ready(function(){
 		<div id="Area6">
 			<c:if test="${AREA6 != null && CARNUMBER6 != null}">
 				<p>
-					<span id = "textArea6" style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
-					<br><span id = "textAmount6" style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span><br>
-					<br><span id = "textCarNumber6" style="font-size: 20pt; font-weight: bold">${CARNUMBER6}</span>
+					<span id="textArea6" style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
+					<br>
+					<span id="textAmount6" style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span><br>
+					<br>
+					<span id="textCarNumber6"
+						style="font-size: 20pt; font-weight: bold">${CARNUMBER6}</span>
 				</p>
 			</c:if>
 			<c:if test="${AREA6 == null || CARNUMBER6 == null}">
 				<p>
-					<span id = "textArea6" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
-					<br> <span id = "textAmount6" style="font-size: 20pt; font-weight: bold">0원</span>
+					<span id="textArea6" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<br> <span id="textAmount6"
+						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
 			</c:if>
 		</div>
 
 	</div>
+
+	<form role="form" method="post" action="carNumberCheck">
+	<p>
+	<label for="AREA">주차 구역</label>
+	<input type="text" id="AREA" name="AREA"/>
+	</p>
+	<p>
+	<label for="CARNUMBER">차량 번호</label>
+	<input type="text" id="CARNUMBER" name="CARNUMBER"/>
 	
+	</p>
 	
-	<form action="parkingStart" method="post">
-	<div>
-	주차구역 :<input type="number" name ="area"  value="1" step="1"  min="1" max="6">
-	차량번호 :<input type="text" name ="cn" size="5">
-	<input type="submit" value="확인">	
-	
-	</div>
-	
+	<p>
+	<button type="submit">주차</button>
+	</p>
 	
 	</form>
-	
+
+
 
 </body>
 

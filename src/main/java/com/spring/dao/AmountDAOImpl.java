@@ -19,5 +19,11 @@ public class AmountDAOImpl implements AmountDAO {
 	public List<AmountVO> selectAmount() throws Exception{
 		return sqlSession.selectList("user.amountCheck");
 	}
+	
+	@Override
+	public void updateCar(AmountVO vo)throws Exception{
+		sqlSession.update("user.inputCarnumber",vo);
+	}
+	
 
 }

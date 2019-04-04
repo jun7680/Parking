@@ -13,20 +13,20 @@ public class AmountVO {
 	public String getCARNUMBER() {
 		return CARNUMBER;
 	}
-	public void setCARNUMBER(String cARNUMBER) {
-		CARNUMBER = cARNUMBER;
+	public void setCARNUMBER(String CARNUMBER) {
+		this.CARNUMBER = CARNUMBER;
 	}
 	public String getAMOUNT() {
 		return AMOUNT;
 	}
-	public void setAMOUNT(String aMOUNT) {
-		AMOUNT = aMOUNT;
+	public void setAMOUNT(String AMOUNT) {
+		this.AMOUNT = AMOUNT;
 	}
 	public String getAREA() {
 		return AREA;
 	}
-	public void setAREA(String aREA) {
-		AREA = aREA;
+	public void setAREA(String AREA) {
+		this.AREA = AREA;
 	}
 	
 	

@@ -19,5 +19,10 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	public List<AmountVO> selectAmount() throws Exception{
 		return dao.selectAmount();
 	}
+	
+	@Override
+	public void updateCar(AmountVO vo) throws Exception{
+		dao.updateCar(vo);
+	}
 
 }

@@ -38,34 +38,34 @@ import com.user.service.UserService;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Inject
 	private AmountCheckService Amountservice;
-	//private UserService userSer2;
+	// private UserService userSer2;
 
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
-	HttpSession session=null;
+
+	HttpSession session = null;
 	MemberVO login;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		session = req.getSession();
-		
-		if(login == null) {
-			session.setAttribute("member",null);		
+
+		if (login == null) {
+			session.setAttribute("member", null);
 			System.out.println("login test f :" + session);
 			System.out.println("login test2 f:" + login);
-			
-		}else {
+
+		} else {
 			session.setAttribute("member", login);
 			model.addAttribute("member", login);
 			System.out.println("login test :" + session);
 			System.out.println("login test2 :" + login);
-			
+
 		}
 
 		return "home";
@@ -73,54 +73,29 @@ public class HomeController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		System.out.println("test login page");
+		logger.info("Welcome login! The client locale is {}.", locale);
 
 		return "/login/login";
 	}
-	
-	@RequestMapping(value = "/parkingStart", method = RequestMethod.POST)
-	public String inputCarNumber(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+//	
 
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		System.out.println("test login page");
-
-		return "/amount/carNumberCheck";
-	}
-	
-	
-	
 	@Resource(name = "userService")
 	private UserService userSer2;
 
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
 	public String LoginCheck(MemberVO vo, HttpServletRequest req) throws Exception {
-		
+
 		session = req.getSession();
-		
+
 		login = userSer2.login(vo);
-		
-		if(login == null) {
-			session.setAttribute("member",null);
-		}else {
-			session.setAttribute("member",login);
+
+		if (login == null) {
+			session.setAttribute("member", null);
+		} else {
+			session.setAttribute("member", login);
 		}
-		System.out.println("login test 1 ->"+login);
+		System.out.println("login test 1 ->" + login);
 
 		return "/login/loginCheck";
 	}
@@ -129,7 +104,7 @@ public class HomeController {
 	public String AmountCheck(Locale locale, Model model) throws Exception {
 
 		List<AmountVO> AmountList = Amountservice.selectAmount();
-			
+
 		model.addAttribute("AmountList", AmountList);
 		return "/amount/check";
 	}
@@ -184,11 +159,11 @@ public class HomeController {
 		try {
 			userSer.register(regReq);
 		} catch (AlreadyExistingEmailException e) {
-			errors.rejectValue("email", "duplicate", "이미 사용중인 Email입니다.");
+			errors.rejectValue("email", "duplicate", "이메일을 확인해 주세요.");
 			ModelAndView mv = new ModelAndView("/register/step2");
 			return mv;
 		} catch (AlreadyExistingIdException e) {
-			errors.rejectValue("id", "duplicate", "이미 사용중인 ID입니다.");
+			errors.rejectValue("id", "duplicate", "이미 사용중인 ID입니다..");
 			ModelAndView mv = new ModelAndView("/register/step2");
 			return mv;
 		}
@@ -196,4 +171,17 @@ public class HomeController {
 		return mv;
 	}
 
+	@Autowired
+	private AmountCheckService aService;
+
+	@RequestMapping(value = "/carNumberCheck",method = RequestMethod.POST)
+	public String carnumber(AmountVO vo) throws Exception{
+		System.out.println("car insert");
+		
+		aService.updateCar(vo);
+		
+		return "/amount/carNumberCheck";
+		
+		
+	}
 }
