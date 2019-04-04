@@ -73,6 +73,16 @@
 
 	</select>
 
+	<update id="inputCarnumber">
+	<![CDATA[
+		update PayInformation set AREA=#{area},
+												  CARNUMBER=#{cn}
+												  where ENDTIME IS NULL
+	
+	]]>
+
+	</update>
+
 
 
 
