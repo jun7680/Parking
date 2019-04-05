@@ -84,6 +84,16 @@
 
 	</update>
 
+	<update id="endtimeInput"
+		parameterType="com.spring.dto.AmountVO">
+	
+	<![CDATA[
+		update PayInformation SET ENDTIME=#{ENDTIME} where AREA=#{AREA};
+	
+	]]>
+
+	</update>
+
 
 
 

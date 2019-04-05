@@ -24,5 +24,10 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	public void updateCar(AmountVO vo) throws Exception{
 		dao.updateCar(vo);
 	}
+	
+	@Override
+	public void updateEndTime(AmountVO vo) throws Exception{
+		dao.updateEndTime(vo);
+	}
 
 }

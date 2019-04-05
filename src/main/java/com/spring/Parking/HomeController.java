@@ -1,6 +1,8 @@
 package com.spring.Parking;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -170,6 +172,26 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("/register/step3");
 		return mv;
 	}
+	
+	@Autowired
+	private AmountCheckService bService;
+
+	@RequestMapping(value = "/parkingout",method = RequestMethod.POST)
+	public String parkingout(AmountVO vo) throws Exception{
+		System.out.println("car insert");
+		
+		Calendar time = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");		
+		
+		vo.setENDTIME(dateFormat.format(time.getTime()));
+		
+		
+		bService.updateEndTime(vo);
+		
+		return "/amount/parkingout";
+		
+		
+	}	
 
 	@Autowired
 	private AmountCheckService aService;
@@ -184,4 +206,7 @@ public class HomeController {
 		
 		
 	}
+	
+
+
 }

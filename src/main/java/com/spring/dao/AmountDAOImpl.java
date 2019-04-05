@@ -24,6 +24,10 @@ public class AmountDAOImpl implements AmountDAO {
 	public void updateCar(AmountVO vo)throws Exception{
 		sqlSession.update("user.inputCarnumber",vo);
 	}
+	@Override
+	public void updateEndTime(AmountVO vo) throws Exception{
+		sqlSession.update("user.endtimeInput",vo);
+	}
 	
 
 }

@@ -8,7 +8,15 @@ public class AmountVO {
 	private String AMOUNT;
 	private String AREA;
 	private String CARNUMBER;
+	private String ENDTIME;
 	
+	public String getENDTIME() {
+		return ENDTIME;
+	}
+	
+	public void setENDTIME(String ENDTIME) {
+		this.ENDTIME = ENDTIME;
+	}
 	
 	public String getCARNUMBER() {
 		return CARNUMBER;

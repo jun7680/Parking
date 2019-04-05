@@ -157,6 +157,13 @@
 	margin-left: -50%;
 	text-align: center;
 }
+
+#pWrapper {
+
+}
+
+
+
 </style>
 
 
@@ -310,10 +317,9 @@
 			<c:if test="${AREA6 != null && CARNUMBER6 != null}">
 				<p>
 					<span id="textArea6" style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
-					<br>
-					<span id="textAmount6" style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span><br>
-					<br>
-					<span id="textCarNumber6"
+					<br> <span id="textAmount6"
+						style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span><br>
+					<br> <span id="textCarNumber6"
 						style="font-size: 20pt; font-weight: bold">${CARNUMBER6}</span>
 				</p>
 			</c:if>
@@ -328,22 +334,51 @@
 
 	</div>
 
-	<form role="form" method="post" action="carNumberCheck">
-	<p>
-	<label for="AREA">주차 구역</label>
-	<input type="text" id="AREA" name="AREA"/>
-	</p>
-	<p>
-	<label for="CARNUMBER">차량 번호</label>
-	<input type="text" id="CARNUMBER" name="CARNUMBER"/>
-	
-	</p>
-	
-	<p>
-	<button type="submit">주차</button>
-	</p>
-	
-	</form>
+	<div style="text-align: center">
+		<p>
+			<span style="color: red">비어있는 구역에 주차를 한후 구역과 차량번호를 입력해주세요</span>
+		</p>
+
+	</div>
+
+	<div id="pWrapper">
+
+		<div id="pLayout">
+
+			<form role="form" method="post" action="carNumberCheck">
+				<p>
+					<label for="AREA">주차 구역</label> <input type="text" id="AREA"
+						name="AREA" />
+				</p>
+				<p>
+					<label for="CARNUMBER">차량 번호</label> <input type="text"
+						id="CARNUMBER" name="CARNUMBER" />
+
+				</p>
+
+				<p>
+					<button type="submit">주차</button>
+				</p>
+
+			</form>
+
+		</div>
+
+		<div id="poutLayout" >
+			<form role="form"  method="post"  action="parkingout">
+				<p>
+					<label for="AREA">주차 구역</label> <input type="text" id="AREA" name="AREA" />
+				</p>
+
+				<p>
+					<button type="submit">출차</button>
+				</p>
+
+			</form>
+		</div>
+
+	</div>
+
 
 
 
