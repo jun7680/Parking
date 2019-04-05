@@ -155,7 +155,7 @@ public class HomeController {
 //		regReq.setPw(br.encode(regReq.getPw()));
 
 		if (errors.hasErrors()) {
-			ModelAndView mv = new ModelAndView("register/step2");
+			ModelAndView mv = new ModelAndView("/register/step2");
 			return mv;
 		}
 		try {
@@ -170,6 +170,15 @@ public class HomeController {
 			return mv;
 		}
 		ModelAndView mv = new ModelAndView("/register/step3");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/logout",method= RequestMethod.GET)
+	public ModelAndView logout(HttpSession req){
+		
+		req.invalidate();
+		System.out.println(req);
+		ModelAndView mv = new ModelAndView("home");
 		return mv;
 	}
 	

@@ -9,7 +9,16 @@ public class MemberVO {
 	private String GENDER;
 	private String PHONE;
 	private String EMAIL;
+	private int AUTH;
 	
+	
+	
+	public int getAUTH() {
+		return AUTH;
+	}
+	public void setAUTH(int AUTH) {
+		this.AUTH = AUTH;
+	}
 	public String getID() {
 		return ID;
 	}

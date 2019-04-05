@@ -36,11 +36,11 @@
 	width: 100%;
 	height: 100px;
 	text-align: center;
-	
-}
-#div_main{
 }
 
+#div_main {
+	
+}
 </style>
 
 </head>
@@ -49,13 +49,27 @@
 
 
 	<div id="div_title">
-		<h1>
-			<span style="color: yellow;">Q</span>-PARK
-		</h1>
+		<div>
+			<h1>
+				<span style="color: yellow;">Q</span>-PARK
+			</h1>
+		</div>
+		<div style="width: 100%">
+			<c:if test="${member!= null}">
+
+				<div>
+					<input type="button" value="로그아웃" onclick="location.href='logout'"
+						style="float: right; cursor: pointer; font-size: 18px; font-weight: bold; border: 0; outline: 0; background-color: white">
+				</div>
+				<div
+					style="float: right; cursor: pointer; font-size: 18px; font-weight: bold; border: 0; outline: 0; background-color: white">
+					<span>${member.NAME }님</span>
+				</div>
+			</c:if>
+
+		</div>
+
 		<c:if test="${member== null}">
-			<script>
-				console.log("${member.NAME}");
-			</script>
 
 			<form>
 				<input type="button" value="회원가입" onclick="location.href='step1'"
@@ -65,11 +79,9 @@
 			</form>
 		</c:if>
 
-		<c:if test="${member!= null}">
-			<p
-				style="float: right; cursor: pointer; font-size: 18px; font-weight: bold; border: 0; outline: 0; background-color: white">${member.NAME}님</p>
-		</c:if>
 	</div>
+
+
 
 	<div id="div_menu">
 		<ul id="nav">
@@ -80,11 +92,15 @@
 			<li><a href="">회사소개</a></li>
 			<li><a href="">Q&A</a></li>
 			<li><a href="">고객센터</a></li>
+			<c:if test="${member.AUTH==0 }">
+				<li><a href="">주차내역</a></li>
+			</c:if>
 		</ul>
 	</div>
 
 	<div id="div_main" align="center">
-	<img src="http://ldb.phinf.naver.net/20180717_38/15318014619476PxGe_JPEG/7ux2xHvlpecdJOQdrgb2TMEM.jpg">
+		<img
+			src="http://ldb.phinf.naver.net/20180717_38/15318014619476PxGe_JPEG/7ux2xHvlpecdJOQdrgb2TMEM.jpg">
 
 
 	</div>

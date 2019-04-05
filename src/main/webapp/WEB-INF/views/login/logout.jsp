@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입 완료</title>
-
-</head>
-<body>
-	<script type="text/javascript">
-		alert("회원가입에 성공하셨습니다.");
+<script type="text/javascript">
+		alert("로그아웃 됬습니다..");
 		document.location.href = "../Parking";
 	</script>
+</head>
+<body>
+
 </body>
 </html>

@@ -67,7 +67,8 @@
 	<![CDATA[
 	 select ID,
 	 		NAME,
-	 		EMAIL
+	 		EMAIL,
+	 		AUTH
 	 from MemberData where ID= #{ID} and PW = #{PW}
       ]]>
 
