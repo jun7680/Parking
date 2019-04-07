@@ -29,5 +29,10 @@ public class AmountDAOImpl implements AmountDAO {
 		sqlSession.update("user.endtimeInput",vo);
 	}
 	
+	@Override
+	public List<AmountVO> selectPayment() throws Exception{
+		return sqlSession.selectList("amount.payMent");
+	}
+	
 
 }

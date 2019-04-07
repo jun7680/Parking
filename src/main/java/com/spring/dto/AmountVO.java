@@ -9,7 +9,15 @@ public class AmountVO {
 	private String AREA;
 	private String CARNUMBER;
 	private String ENDTIME;
+	private String REGION;
 	
+	public String getREGION() {
+		return REGION;
+	}
+	public void setREGION(String REGION) {
+		this.REGION = REGION;
+	}
+
 	public String getENDTIME() {
 		return ENDTIME;
 	}

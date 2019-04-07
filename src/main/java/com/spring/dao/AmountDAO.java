@@ -11,5 +11,7 @@ public interface AmountDAO {
 	public void updateCar(AmountVO vo) throws Exception;
 	
 	public void updateEndTime(AmountVO vo) throws Exception;
+	
+	public List<AmountVO> selectPayment() throws Exception;
 
 }

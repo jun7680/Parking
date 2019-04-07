@@ -94,7 +94,7 @@
 			<li><a href="">Q&A</a></li>
 			<li><a href="">고객센터</a></li>
 			<c:if test="${member.AUTH==0 }">
-				<li><a href="">주차내역</a></li>
+				<li><a href="payment">결제 내역</a></li>
 			</c:if>
 		</ul>
 	</div>

@@ -29,5 +29,10 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	public void updateEndTime(AmountVO vo) throws Exception{
 		dao.updateEndTime(vo);
 	}
+	
+	@Override
+	public List<AmountVO> selectPayment() throws Exception{
+		return dao.selectPayment();
+	}
 
 }

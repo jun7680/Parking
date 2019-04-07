@@ -3,11 +3,12 @@
 
 <mapper namespace="amount">
 
-	<select id="amountCheck" resultType="com.spring.dto.AmountVO">
+	<select id="payMent" resultType="com.spring.dto.AmountVO">
 	 <![CDATA[
-	 select AREA,
-	 		AMOUNT
-	 from PayInformation where ENDTIME IS NULL
+	 select AMOUNT,
+	 		CARNUMBER,
+	 		REGION
+	 from PayInformation where PAYMENT='Y'
       ]]>
 	</select>
 

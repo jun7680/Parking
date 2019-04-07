@@ -221,6 +221,22 @@ public class HomeController {
 		
 	}
 	
+	
+	/**
+	 * Admin menu
+	 */
+	
+	@RequestMapping(value = "/payment", method = RequestMethod.GET)
+	public String Payment(Model model) throws Exception {
+
+		List<AmountVO> PaymentList = Amountservice.selectPayment();
+
+		model.addAttribute("Payment", PaymentList);
+		return "/admin/payment";
+	}
+
+	
+	
 
 
 }
