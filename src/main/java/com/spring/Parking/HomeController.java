@@ -50,11 +50,12 @@ public class HomeController {
 	 */
 
 	HttpSession session = null;
-	MemberVO login;
+	MemberVO login=null;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		
 		session = req.getSession();
 
 		if (login == null) {
@@ -88,7 +89,7 @@ public class HomeController {
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
 	public String LoginCheck(MemberVO vo, HttpServletRequest req) throws Exception {
 
-		session = req.getSession();
+		//session = req.getSession();
 
 		login = userSer2.login(vo);
 
@@ -173,13 +174,17 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/logout",method= RequestMethod.GET)
-	public ModelAndView logout(HttpSession req){
-		
-		req.invalidate();
-		System.out.println(req);
-		ModelAndView mv = new ModelAndView("home");
-		return mv;
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+			login = null;
+			System.out.println("성공?");
+			
+			
+		}
+		return "/login/logout";
 	}
 	
 	@Autowired

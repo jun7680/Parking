@@ -58,12 +58,13 @@
 			<c:if test="${member!= null}">
 
 				<div>
+				
 					<input type="button" value="로그아웃" onclick="location.href='logout'"
 						style="float: right; cursor: pointer; font-size: 18px; font-weight: bold; border: 0; outline: 0; background-color: white">
 				</div>
 				<div
 					style="float: right; cursor: pointer; font-size: 18px; font-weight: bold; border: 0; outline: 0; background-color: white">
-					<span>${member.NAME }님</span>
+					<span>${member.NAME}님</span>
 				</div>
 			</c:if>
 
