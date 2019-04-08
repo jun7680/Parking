@@ -8,9 +8,62 @@
 	 select AMOUNT,
 	 		CARNUMBER,
 	 		REGION
-	 from PayInformation where PAYMENT='Y'
+	 from PayInformation where PAYMENT='Y';
       ]]>
 	</select>
+
+	<select id="amountCheck" resultType="com.spring.dto.AmountVO">
+	 <![CDATA[
+	 select AREA,
+	 		AMOUNT,
+	 		CARNUMBER,
+	 		REGION
+	 from PayInformation where ENDTIME IS NULL AND PAYMENT='N'
+      ]]>
+	</select>
+
+
+
+
+
+	<update id="inputCarnumber1"
+		parameterType="com.spring.dto.AmountVO">
+	<![CDATA[
+		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0' where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
+	
+	]]>
+
+	</update>
+	
+	<update id="inputCarnumber2"
+		parameterType="com.spring.dto.AmountVO">
+	<![CDATA[
+		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0' where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='2'
+	
+	]]>
+
+	</update>
+
+	<update id="endtimeInput1"
+		parameterType="com.spring.dto.AmountVO">
+	
+	<![CDATA[
+		update PayInformation SET ENDTIME=#{ENDTIME},PAYMENT='Y' where AREA=#{AREA} AND REGION='1'
+	
+	]]>
+
+	</update>
+
+
+<update id="endtimeInput2"
+		parameterType="com.spring.dto.AmountVO">
+	
+	<![CDATA[
+		update PayInformation SET ENDTIME=#{ENDTIME},PAYMENT='Y' where AREA=#{AREA} AND REGION='2'
+	
+	]]>
+
+	</update>
 
 
 

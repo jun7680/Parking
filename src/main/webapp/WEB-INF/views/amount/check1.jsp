@@ -159,7 +159,7 @@
 }
 
 #pWrapper {
-
+	
 }
 
 
@@ -171,38 +171,41 @@
 </head>
 <body>
 	<c:forEach items="${AmountList}" var="AmountList">
+		<c:if test="${AmountList.REGION == 1}">
 
-		<c:if test="${AmountList.AREA ==1}">
-			<c:set var="AREA1" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT1" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER1" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
-		<c:if test="${AmountList.AREA ==2}">
-			<c:set var="AREA2" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT2" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER2" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
-		<c:if test="${AmountList.AREA ==3}">
-			<c:set var="AREA3" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT3" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER3" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
-		<c:if test="${AmountList.AREA ==4}">
-			<c:set var="AREA4" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT4" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER4" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
-		<c:if test="${AmountList.AREA ==5}">
-			<c:set var="AREA5" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT5" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER5" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
-		<c:if test="${AmountList.AREA ==6}">
-			<c:set var="AREA6" value="${AmountList.AREA}"></c:set>
-			<c:set var="AMOUNT6" value="${AmountList.AMOUNT }"></c:set>
-			<c:set var="CARNUMBER6" value="${AmountList.CARNUMBER }"></c:set>
-		</c:if>
 
+			<c:if test="${AmountList.AREA ==1}">
+				<c:set var="AREA1" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT1" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER1" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+			<c:if test="${AmountList.AREA ==2}">
+				<c:set var="AREA2" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT2" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER2" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+			<c:if test="${AmountList.AREA ==3}">
+				<c:set var="AREA3" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT3" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER3" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+			<c:if test="${AmountList.AREA ==4}">
+				<c:set var="AREA4" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT4" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER4" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+			<c:if test="${AmountList.AREA ==5}">
+				<c:set var="AREA5" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT5" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER5" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+			<c:if test="${AmountList.AREA ==6}">
+				<c:set var="AREA6" value="${AmountList.AREA}"></c:set>
+				<c:set var="AMOUNT6" value="${AmountList.AMOUNT }"></c:set>
+				<c:set var="CARNUMBER6" value="${AmountList.CARNUMBER }"></c:set>
+			</c:if>
+
+		</c:if>
 
 
 
@@ -213,7 +216,7 @@
 		<div id="Area1">
 			<c:if test="${AREA1 != null && CARNUMBER1 != null}">
 				<p>
-					<span id="textArea1" style="font-size: 25pt; font-weight: bold">${AREA1}구역</span><br>
+					<span id="textArea1" style="font-size: 25pt; font-weight: bold; color:red">${AREA1}구역</span><br>
 					<br> <span id="textAmount1"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT1}원</span><br>
 					<br> <span id="textCarNumber1"
@@ -221,8 +224,8 @@
 				</p>
 			</c:if>
 			<c:if test="${AREA1 == null || CARNUMBER1 == null}">
-				<p>
-					<span id="textArea1" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+				<p >
+					<span id="textArea1" style="font-size: 25pt; font-weight: bold; color:green">비어있음</span><br>
 					<br> <span id="textAmount1"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -232,8 +235,8 @@
 		<div id="Area2">
 
 			<c:if test="${AREA2 != null && CARNUMBER2 != null}">
-				<p>
-					<span id="textArea2" style="font-size: 25pt; font-weight: bold">${AREA2}구역</span><br>
+				<p id="full">
+					<span id="textArea2" style="font-size: 25pt; font-weight: bold; color:red">${AREA2}구역</span><br>
 					<br> <span id="textAmount2"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT2}원</span><br>
 					<br> <span id="textCarNumber2"
@@ -241,8 +244,8 @@
 				</p>
 			</c:if>
 			<c:if test="${AREA2 == null || CARNUMBER2 == null}">
-				<p>
-					<span id="textArea2" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+				<p id="empty">
+					<span id="textArea2" style="font-size: 25pt; font-weight: bold; color:green">비어있음</span><br>
 					<br> <span id="textAmount2"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -251,7 +254,7 @@
 		<div id="Area3">
 			<c:if test="${AREA3 != null && CARNUMBER3 != null}">
 				<p>
-					<span id="textArea3" style="font-size: 25pt; font-weight: bold">${AREA3}구역</span><br>
+					<span id="textArea3" style="font-size: 25pt; font-weight: bold; color:red">${AREA3}구역</span><br>
 					<br> <span id="textAmount3"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT3}원</span><br>
 					<br> <span id="textCarNumber3"
@@ -260,7 +263,7 @@
 			</c:if>
 			<c:if test="${AREA3 == null || CARNUMBER3 == null}">
 				<p>
-					<span id="textArea3" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<span id="textArea3" style="font-size: 25pt; font-weight: bold; color:green">비어있음</span><br>
 					<br> <span id="textAmount3"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -277,7 +280,7 @@
 
 			<c:if test="${AREA4 != null && CARNUMBER4 != null}">
 				<p>
-					<span id="textArea4" style="font-size: 25pt; font-weight: bold">${AREA4}구역</span><br>
+					<span id="textArea4" style="font-size: 25pt; font-weight: bold; color:red">${AREA4}구역</span><br>
 					<br> <span id="textAmount4"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT4}원</span><br>
 					<br> <span id="textCarNumber4"
@@ -286,7 +289,7 @@
 			</c:if>
 			<c:if test="${AREA4 == null || CARNUMBER4 == null}">
 				<p>
-					<span id="textArea4" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<span id="textArea4" style="font-size: 25pt; font-weight: bold;color:green">비어있음</span><br>
 					<br> <span id="textAmount4"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -297,7 +300,7 @@
 
 			<c:if test="${AREA5 != null && CARNUMBER5 != null}">
 				<p>
-					<span id="textArea5" style="font-size: 25pt; font-weight: bold">${AREA5}구역</span><br>
+					<span id="textArea5" style="font-size: 25pt; font-weight: bold;color:red">${AREA5}구역</span><br>
 					<br> <span id="textAmount5"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT5}원</span><br>
 					<br> <span id="textCarNumber5"
@@ -306,7 +309,7 @@
 			</c:if>
 			<c:if test="${AREA5 == null || CARNUMBER5 == null}">
 				<p>
-					<span id="textArea5" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<span id="textArea5" style="font-size: 25pt; font-weight: bold;color:green">비어있음</span><br>
 					<br> <span id="textAmount5"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -316,7 +319,7 @@
 		<div id="Area6">
 			<c:if test="${AREA6 != null && CARNUMBER6 != null}">
 				<p>
-					<span id="textArea6" style="font-size: 25pt; font-weight: bold">${AREA6}구역</span><br>
+					<span id="textArea6" style="font-size: 25pt; font-weight: bold;color:red">${AREA6}구역</span><br>
 					<br> <span id="textAmount6"
 						style="font-size: 20pt; font-weight: bold">${AMOUNT6}원</span><br>
 					<br> <span id="textCarNumber6"
@@ -325,7 +328,7 @@
 			</c:if>
 			<c:if test="${AREA6 == null || CARNUMBER6 == null}">
 				<p>
-					<span id="textArea6" style="font-size: 25pt; font-weight: bold">비어있음</span><br>
+					<span id="textArea6" style="font-size: 25pt; font-weight: bold;color:green">비어있음</span><br>
 					<br> <span id="textAmount6"
 						style="font-size: 20pt; font-weight: bold">0원</span>
 				</p>
@@ -345,7 +348,7 @@
 
 		<div id="pLayout">
 
-			<form role="form" method="post" action="carNumberCheck">
+			<form role="form" method="post" action="carNumberCheck1">
 				<p>
 					<label for="AREA">주차 구역</label> <input type="text" id="AREA"
 						name="AREA" />
@@ -364,10 +367,11 @@
 
 		</div>
 
-		<div id="poutLayout" >
-			<form role="form"  method="post"  action="parkingout">
+		<div id="poutLayout">
+			<form role="form" method="post" action="parkingout1">
 				<p>
-					<label for="AREA">주차 구역</label> <input type="text" id="AREA" name="AREA" />
+					<label for="AREA">주차 구역</label> <input type="text" id="AREA"
+						name="AREA" />
 				</p>
 
 				<p>

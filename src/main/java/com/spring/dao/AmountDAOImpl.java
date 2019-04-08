@@ -17,17 +17,28 @@ public class AmountDAOImpl implements AmountDAO {
 		
 	@Override
 	public List<AmountVO> selectAmount() throws Exception{
-		return sqlSession.selectList("user.amountCheck");
+		return sqlSession.selectList("amount.amountCheck");
 	}
 	
 	@Override
-	public void updateCar(AmountVO vo)throws Exception{
-		sqlSession.update("user.inputCarnumber",vo);
+	public void updateCar1(AmountVO vo)throws Exception{
+		sqlSession.update("amount.inputCarnumber1",vo);
+	}
+	
+	@Override
+	public void updateCar2(AmountVO vo)throws Exception{
+		sqlSession.update("amount.inputCarnumber2",vo);
 	}
 	@Override
-	public void updateEndTime(AmountVO vo) throws Exception{
-		sqlSession.update("user.endtimeInput",vo);
+	public void updateEndTime1(AmountVO vo) throws Exception{
+		sqlSession.update("amount.endtimeInput1",vo);
 	}
+	
+	@Override
+	public void updateEndTime2(AmountVO vo) throws Exception{
+		sqlSession.update("amount.endtimeInput2",vo);
+	}
+	
 	
 	@Override
 	public List<AmountVO> selectPayment() throws Exception{

@@ -7,7 +7,7 @@
 <title>출차</title>
 <script type="text/javascript">
 		alert("정상적으로 출차되었습니다..");
-		document.location.href = "check";
+		document.location.href = "../Parking";
 	</script>
 </head>
 <body>

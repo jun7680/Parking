@@ -103,13 +103,36 @@ public class HomeController {
 		return "/login/loginCheck";
 	}
 
-	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public String AmountCheck(Locale locale, Model model) throws Exception {
-
+	@RequestMapping(value = "/check1", method = RequestMethod.GET)
+	public String AmountCheck1(Locale locale, Model model,AmountVO vo) throws Exception {
+		
+		//vo.setREGION("1");
 		List<AmountVO> AmountList = Amountservice.selectAmount();
+		
+		System.out.println(AmountList);
 
 		model.addAttribute("AmountList", AmountList);
-		return "/amount/check";
+		return "/amount/check1";
+	}
+	
+	@RequestMapping(value = "/check2", method = RequestMethod.GET)
+	public String AmountCheck2(Locale locale, Model model,AmountVO vo) throws Exception {
+		
+		//vo.setREGION("1");
+		List<AmountVO> AmountList = Amountservice.selectAmount();
+		
+		System.out.println(AmountList);
+
+		model.addAttribute("AmountList", AmountList);
+		return "/amount/check2";
+	}
+	@RequestMapping(value = "/regionselect", method = RequestMethod.GET)
+	public String RegionSelect(Locale locale, Model model) throws Exception {
+
+		List<AmountVO> AmountList = Amountservice.selectAmount();
+		System.out.println(AmountList);
+		model.addAttribute("AmountList", AmountList);
+		return "/amount/regionselect";
 	}
 
 	@RequestMapping("/step1")
@@ -190,8 +213,8 @@ public class HomeController {
 	@Autowired
 	private AmountCheckService bService;
 
-	@RequestMapping(value = "/parkingout",method = RequestMethod.POST)
-	public String parkingout(AmountVO vo) throws Exception{
+	@RequestMapping(value = "/parkingout1",method = RequestMethod.POST)
+	public String parkingout1(AmountVO vo) throws Exception{
 		System.out.println("car insert");
 		
 		Calendar time = Calendar.getInstance();
@@ -200,7 +223,24 @@ public class HomeController {
 		vo.setENDTIME(dateFormat.format(time.getTime()));
 		
 		
-		bService.updateEndTime(vo);
+		bService.updateEndTime1(vo);
+		
+		return "/amount/parkingout";
+		
+		
+	}	
+	
+	@RequestMapping(value = "/parkingout2",method = RequestMethod.POST)
+	public String parkingout2(AmountVO vo) throws Exception{
+		System.out.println("car insert");
+		
+		Calendar time = Calendar.getInstance();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");		
+		
+		vo.setENDTIME(dateFormat.format(time.getTime()));
+		
+		
+		bService.updateEndTime2(vo);
 		
 		return "/amount/parkingout";
 		
@@ -210,11 +250,23 @@ public class HomeController {
 	@Autowired
 	private AmountCheckService aService;
 
-	@RequestMapping(value = "/carNumberCheck",method = RequestMethod.POST)
-	public String carnumber(AmountVO vo) throws Exception{
+	@RequestMapping(value = "/carNumberCheck1",method = RequestMethod.POST)
+	public String carnumber1(AmountVO vo) throws Exception{
 		System.out.println("car insert");
 		
-		aService.updateCar(vo);
+		aService.updateCar1(vo);
+		
+		return "/amount/carNumberCheck";
+		
+		
+	}
+	
+	
+	@RequestMapping(value = "/carNumberCheck2",method = RequestMethod.POST)
+	public String carnumber2(AmountVO vo) throws Exception{
+		System.out.println("car insert");
+		
+		aService.updateCar2(vo);
 		
 		return "/amount/carNumberCheck";
 		

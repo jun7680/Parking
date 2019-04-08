@@ -89,7 +89,7 @@
 			<li><a href="">주차</a></li>
 			<li><a href="">이용방법</a></li>
 			<li><a href="">주차장찾기</a></li>
-			<li><a href="check">주차요금 확인</a></li>
+			<li><a href="regionselect">주차요금 확인</a></li>
 			<li><a href="">회사소개</a></li>
 			<li><a href="">Q&A</a></li>
 			<li><a href="">고객센터</a></li>

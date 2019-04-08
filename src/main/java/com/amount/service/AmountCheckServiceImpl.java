@@ -21,13 +21,23 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	}
 	
 	@Override
-	public void updateCar(AmountVO vo) throws Exception{
-		dao.updateCar(vo);
+	public void updateCar1(AmountVO vo) throws Exception{
+		dao.updateCar1(vo);
 	}
 	
 	@Override
-	public void updateEndTime(AmountVO vo) throws Exception{
-		dao.updateEndTime(vo);
+	public void updateCar2(AmountVO vo) throws Exception{
+		dao.updateCar2(vo);
+	}
+	
+	@Override
+	public void updateEndTime1(AmountVO vo) throws Exception{
+		dao.updateEndTime1(vo);
+	}
+	
+	@Override
+	public void updateEndTime2(AmountVO vo) throws Exception{
+		dao.updateEndTime2(vo);
 	}
 	
 	@Override

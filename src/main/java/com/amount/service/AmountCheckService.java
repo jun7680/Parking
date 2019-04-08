@@ -7,8 +7,11 @@ import com.spring.dto.AmountVO;
 public interface AmountCheckService {
 	
 	public List<AmountVO> selectAmount() throws Exception;
-	public void updateCar(AmountVO vo) throws Exception;
-	public void updateEndTime(AmountVO vo) throws Exception;
+	public void updateCar1(AmountVO vo) throws Exception;
+	public void updateCar2(AmountVO vo) throws Exception;
+	public void updateEndTime1(AmountVO vo) throws Exception;
+
+	public void updateEndTime2(AmountVO vo) throws Exception;
 	public List<AmountVO> selectPayment() throws Exception;
 
 }
