@@ -1,6 +1,5 @@
 package com.spring.util;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.validation.Errors;
@@ -30,22 +29,22 @@ public class RegisterRequestValidator implements Validator {
     public void validate(Object target, Errors errors) {
         RegisterRequest regReq = (RegisterRequest) target;
         
-        if(regReq.getEmail() == null || regReq.getEmail().trim().isEmpty()) {
-            errors.rejectValue("email", "required", "이메일은 필수 항목 입니다.");
-        } else {
-            Matcher matcher = pattern.matcher(regReq.getEmail());
-            if(!matcher.matches()) {
-                errors.rejectValue("email", "bad", "이메일을");
-                
-               
-;            }
-        }
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required", "이름을 입력해주세요");
-        ValidationUtils.rejectIfEmpty(errors, "pw", "required", "필수항목입니다.");
-        ValidationUtils.rejectIfEmpty(errors, "cpw", "required", "필수항목입니다.");
+//        if(regReq.getEmail() == null || regReq.getEmail().trim().isEmpty()) {
+//            errors.rejectValue("email", "required", "이메일(Email)은 필수 항목입니다..");
+//        } else {
+//            Matcher matcher = pattern.matcher(regReq.getEmail());
+//            if(!matcher.matches()) {
+//                errors.rejectValue("email", "bad", "이메일 형식에 맞춰주세요");
+//                
+//               
+//;            }
+//        }
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required", "이름은 필수 항목입니다.");
+        ValidationUtils.rejectIfEmpty(errors, "pw", "required", "비밀번호는 필수 항목입니다.");
+        ValidationUtils.rejectIfEmpty(errors, "cpw", "required", "비밀번호확인은 필수 항목입니다..");
         if(!regReq.getPw().isEmpty()) {
             if(!regReq.isPwEqualToCheckPw()) {
-                errors.rejectValue("cpw", "nomatch", "PW가 일치하지 않습니다.");
+                errors.rejectValue("cpw", "nomatch", "비밀번호가 일치하지 않습니다.");
             }
         }
     }

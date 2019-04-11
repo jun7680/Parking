@@ -129,10 +129,14 @@ public class HomeController {
 	@RequestMapping(value = "/regionselect", method = RequestMethod.GET)
 	public String RegionSelect(Locale locale, Model model) throws Exception {
 
+		String returnUrl =null;
+		
+		if(login == null || login.equals("")) returnUrl = "/error/requireLogin";
+		else returnUrl="/amount/regionselect";
 		List<AmountVO> AmountList = Amountservice.selectAmount();
 		System.out.println(AmountList);
 		model.addAttribute("AmountList", AmountList);
-		return "/amount/regionselect";
+		return returnUrl;
 	}
 
 	@RequestMapping("/step1")
@@ -153,11 +157,12 @@ public class HomeController {
 
 	@RequestMapping("/step2")
 	public ModelAndView step2(@RequestParam(value = "agree", defaultValue = "false") Boolean agree) throws Exception {
-		if (!agree) {
-			ModelAndView mv = new ModelAndView("/register/step1");
-			System.out.println("false");
-			return mv;
-		}
+		
+//		if (!agree) {
+//			ModelAndView mv = new ModelAndView("/register/step1");
+//			System.out.println("false");
+//			return mv;
+//		}
 		ModelAndView mv = new ModelAndView("/register/step2");
 		mv.addObject("registerRequest", new RegisterRequest());
 		System.out.println("true");

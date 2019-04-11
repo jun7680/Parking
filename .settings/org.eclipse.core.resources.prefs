@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/spring/Parking/HomeController.java=UTF-8
+encoding//src/main/java/com/spring/util/RegisterRequestValidator.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/amount/regionselect.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/login/login.jsp=UTF-8
