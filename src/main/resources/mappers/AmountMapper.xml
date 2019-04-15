@@ -29,7 +29,8 @@
 	<update id="inputCarnumber1"
 		parameterType="com.spring.dto.AmountVO">
 	<![CDATA[
-		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0' where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
+		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0',ID=#{LOGINID} where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
+		
 	
 	]]>
 
@@ -64,6 +65,16 @@
 	]]>
 
 	</update>
+	
+	
+	<select id="mypayment" resultType="com.spring.dto.AmountVO">
+	
+	<![CDATA[
+		 select *
+	 from PayInformation where PAYMENT='N' AND ID=#{ID}
+	]]>
+	
+	</select>
 
 
 

@@ -3270,7 +3270,7 @@ span.ui-spinner a.ui-spinner-button {
 								data-sectionNo='2015174' data-itemNo='5917341' style=''>
 								<div id='itemElement5917341' class='item-element' style=''>
 									<p style="text-align: center;" class="">
-										노상주차장에 주차완료 후 주차장 근처에 설치된 QR코드를 스마트폰으로 촬영하세요 (2018년 하반기 부터
+										노상주차장에 주차완료 후 주차장 근처에 설치된 QR코드를 스마트폰으로 촬영하세요 (2019년 하반기 부터
 										지원합니다)<br>
 									</p>
 								</div>
@@ -3318,7 +3318,7 @@ span.ui-spinner a.ui-spinner-button {
 									style='height: 0px;'></div>
 							</div>
 						</div>
-						<div data-columnNo='3' id='section2015174_column3'
+						<div data-columnNo='3' id='section2015174_column3' onclick="location.href='feecalculation'" style="cursor: pointer;"
 							class='customSectionColumn column-3'>
 							<div id='item5917347' class='item-wrapper image' data-type='item'
 								data-itemType='image' data-orderNo='9' data-sectionNo='2015174'

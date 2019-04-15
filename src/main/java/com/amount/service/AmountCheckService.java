@@ -13,5 +13,7 @@ public interface AmountCheckService {
 
 	public void updateEndTime2(AmountVO vo) throws Exception;
 	public List<AmountVO> selectPayment() throws Exception;
+	
+	 public AmountVO myPayment(AmountVO vo) throws Exception;
 
 }

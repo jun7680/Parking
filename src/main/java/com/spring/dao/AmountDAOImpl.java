@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.dto.AmountVO;
 
 @Repository
-public class AmountDAOImpl implements AmountDAO {
+public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
 
 	@Inject
 	private SqlSession sqlSession;
@@ -39,11 +39,14 @@ public class AmountDAOImpl implements AmountDAO {
 		sqlSession.update("amount.endtimeInput2",vo);
 	}
 	
-	
 	@Override
 	public List<AmountVO> selectPayment() throws Exception{
 		return sqlSession.selectList("amount.payMent");
 	}
 	
+	
+	public AmountVO myPayment(AmountVO vo) throws Exception{
+		return (AmountVO) selectOne("amount.mypayment", vo);
+	}
 
 }

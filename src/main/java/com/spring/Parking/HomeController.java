@@ -40,7 +40,8 @@ import com.user.service.UserService;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
+	
+	
 	@Inject
 	private AmountCheckService Amountservice;
 	// private UserService userSer2;
@@ -51,6 +52,8 @@ public class HomeController {
 
 	HttpSession session = null;
 	MemberVO login=null;
+	String loginid = null;
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
@@ -66,6 +69,8 @@ public class HomeController {
 		} else {
 			session.setAttribute("member", login);
 			model.addAttribute("member", login);
+			System.out.println("Id is ->"+ login.getID());
+			loginid = login.getID();
 			System.out.println("login test :" + session);
 			System.out.println("login test2 :" + login);
 
@@ -73,7 +78,8 @@ public class HomeController {
 
 		return "home";
 	}
-
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		logger.info("Welcome login! The client locale is {}.", locale);
@@ -157,15 +163,9 @@ public class HomeController {
 
 	@RequestMapping("/step2")
 	public ModelAndView step2(@RequestParam(value = "agree", defaultValue = "false") Boolean agree) throws Exception {
-		
-//		if (!agree) {
-//			ModelAndView mv = new ModelAndView("/register/step1");
-//			System.out.println("false");
-//			return mv;
-//		}
+
 		ModelAndView mv = new ModelAndView("/register/step2");
 		mv.addObject("registerRequest", new RegisterRequest());
-		System.out.println("true");
 		return mv;
 
 	}
@@ -179,9 +179,6 @@ public class HomeController {
 	@RequestMapping("/step3")
 	public ModelAndView step3(RegisterRequest regReq, Errors errors) throws Exception {
 		new RegisterRequestValidator().validate(regReq, errors);
-
-//		regReq.setCpw(br.encode(regReq.getCpw()));
-//		regReq.setPw(br.encode(regReq.getPw()));
 
 		if (errors.hasErrors()) {
 			ModelAndView mv = new ModelAndView("/register/step2");
@@ -257,9 +254,14 @@ public class HomeController {
 
 	@RequestMapping(value = "/carNumberCheck1",method = RequestMethod.POST)
 	public String carnumber1(AmountVO vo) throws Exception{
+		
 		System.out.println("car insert");
 		
+		System.out.println(login.getID());
+		
+		vo.setID(login.getID());
 		aService.updateCar1(vo);
+		
 		
 		return "/amount/carNumberCheck";
 		
@@ -290,6 +292,28 @@ public class HomeController {
 
 		model.addAttribute("Payment", PaymentList);
 		return "/admin/payment";
+	}
+	
+	
+	
+	@RequestMapping(value="/feecalculation", method=RequestMethod.GET)
+	public String FeeCalculation(Model model,AmountVO vo) throws Exception{
+		AmountVO LVO = null;
+		
+		vo.setID(login.getID());
+		LVO = Amountservice.myPayment(vo);
+		System.out.println(LVO);
+		
+		//model.addAttribute("myPayment");
+		//List<AmountVO> myPayment = aService.myPayment();
+		
+//		System.out.println(myPayment);
+//		
+		model.addAttribute("myPayment", LVO);
+//		model.addAttribute("loginid",login.getID());
+				
+		return"/feepayment/feepayment";
+		
 	}
 
 	

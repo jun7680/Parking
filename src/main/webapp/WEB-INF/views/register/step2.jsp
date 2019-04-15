@@ -2861,71 +2861,6 @@ span.ui-spinner a.ui-spinner-button {
 
         </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- facebookLogin -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- conversionTracking_naver -->
-
-
-
-
-
-<!-- custom_code_head -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- js -->
 <script
 	src="https://static.sixshop.com/resources/libs/ckeditor-4.9.2/ckeditor.js?v=04020701"></script>
@@ -3275,30 +3210,6 @@ span.ui-spinner a.ui-spinner-button {
 											class="trans-fast designSettingElement text-body">여자</label>
 									</div>
 								</div>
-
-
-								<!-- 
-								<div class="checkbox-wrapper clearfix">
-									<div class="checkbox">
-										<input type="checkbox" id="agreeCheck1" name="agreeCheck1">
-									</div>
-									<label for="agreeCheck1"> <a href="/miniromi/policy"
-										class="designSettingElement text-link" target="_blank">이용약관</a>과
-										<a href="/miniromi/signupPrivacy"
-										class="designSettingElement text-link" target="_blank">개인정보
-											수집 및 이용</a>에 동의합니다.
-
-									</label>
-								</div>
-
-								<div class="checkbox-wrapper clearfix">
-									<div class="checkbox">
-										<input type="checkbox" id="agreeCheck2">
-									</div>
-									<label for="agreeCheck2">만 14세 이상입니다.</label>
-								</div>
- -->
-
 								<div id="loginSignupErrorMsg" class="error-msg"></div>
 								<div class="btn-wrapper">
 

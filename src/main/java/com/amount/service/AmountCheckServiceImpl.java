@@ -44,5 +44,11 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	public List<AmountVO> selectPayment() throws Exception{
 		return dao.selectPayment();
 	}
+	
+	@Override
+	public AmountVO myPayment(AmountVO vo) throws Exception {
+		return dao.myPayment(vo);
+	}
+	
 
 }

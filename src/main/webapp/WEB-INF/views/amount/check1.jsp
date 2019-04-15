@@ -358,7 +358,6 @@
 						id="CARNUMBER" name="CARNUMBER" />
 
 				</p>
-
 				<p>
 					<button type="submit">주차</button>
 				</p>

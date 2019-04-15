@@ -2,93 +2,11 @@
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible"
 	content="IE=edge" />
-
-<script>
-	window.onload = function() {
-
-		var canvas1 = document.getElementById("1Area");
-
-		var context1 = canvas1.getContext("2d");
-
-		var y = 110;
-		var ry = 50;
-		context1.beginPath();
-
-		context1.strokeStyle = "black"; //사각형 선 색
-
-		context1.lineWidth = 3; //사각형 선 두께
-
-		/**1지역**/
-		context1.font = "20pt '맑은 고딕'"
-		context1.fillText('청주지역', 25, y);
-		context1.rect(20, ry, 120, 100);
-		context1.stroke();
-
-		context1.fillText('1구역', 185, y);
-		context1.fillText('2구역', 265, y);
-		context1.fillText('3구역', 345, y);
-		context1.fillText('4구역', 425, y);
-		context1.fillText('5구역', 505, y);
-		context1.fillText('6구역', 585, y);
-		//context1.fillText('7구역', 665, y);
-		//context1.fillText('8구역', 745, y);
-		context1.strokeRect(180, ry, 80, 100);
-		context1.strokeRect(260, ry, 80, 100);
-		context1.strokeRect(340, ry, 80, 100);
-		context1.strokeRect(420, ry, 80, 100);
-		context1.strokeRect(500, ry, 80, 100);
-		context1.strokeRect(580, ry, 80, 100);
-		//context1.strokeRect(660, ry, 80, 100);
-		//context1.strokeRect(740, ry, 80, 100);
-
-		var canvas2 = document.getElementById("2Area");
-		var context2 = canvas2.getContext("2d");
-
-		context2.beginPath();
-
-		context2.strokeStyle = "black"; //사각형 선 색
-
-		context2.lineWidth = 3; //사각형 선 두께
-
-		context2.font = "20pt '맑은 고딕'"
-		context2.fillText('오창지역', 25, y);
-		context2.rect(20, ry, 120, 100);
-		context2.stroke();
-
-		context2.fillText('1구역', 185, y);
-		context2.fillText('2구역', 265, y);
-		context2.fillText('3구역', 345, y);
-		context2.fillText('4구역', 425, y);
-		context2.fillText('5구역', 505, y);
-		context2.fillText('6구역', 585, y);
-		//context2.fillText('7구역', 665, y);
-		//context2.fillText('8구역', 745, y);
-		context2.strokeRect(180, ry, 80, 100);
-		context2.strokeRect(260, ry, 80, 100);
-		context2.strokeRect(340, ry, 80, 100);
-		context2.strokeRect(420, ry, 80, 100);
-		context2.strokeRect(500, ry, 80, 100);
-		context2.strokeRect(580, ry, 80, 100);
-		//context2.strokeRect(660, ry, 80, 100);
-		//context2.strokeRect(740, ry, 80, 100);
-
-	};
-</script>
-
-
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js?v=04020701"></script>
 <script>
@@ -2720,8 +2638,7 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-<link rel="canonical"
-	href="https://auctioncourt.xyz/untitled-2?productListFilter=136638">
+<link rel="canonical" href="https://auctioncourt.xyz/untitled-2">
 
 
 
@@ -2756,66 +2673,24 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-<meta property="og:url"
-	content="https://auctioncourt.xyz/untitled-2?productListFilter=136638" />
-
-
-
-
+<meta property="og:url" content="https://auctioncourt.xyz/untitled-2" />
 
 
 <meta property="og:type" content="website" />
 
 
-
-
-
-
-
 <meta property="og:title" content="Q-Park" />
-
-
-
-
-
 
 
 <meta property="og:description" content="Mobile Parking Q-Park" />
 
 
 
-
-
-
-
-
 <meta property="og:image"
 	content="https://contents.sixshop.com/uploadedFiles/50936/default/image_1518934774975.png" />
 
-
-
-
-
-<!-- 트위터 -->
-
-
-
-
-
 <meta property="twitter:title" content="Q-Park" />
-
-
-
-
-
-
-
 <meta name="twitter:description" content="Mobile Parking Q-Park" />
-
-
-
-
-
 
 
 
@@ -2829,15 +2704,6 @@ span.ui-spinner a.ui-spinner-button {
 
 <link rel="shortcut icon" type="image/x-icon"
 	href="https://contents.sixshop.com/uploadedFiles/50936/default/image_1518934623612.png" />
-
-
-
-
-
-
-
-
-
 
 
 <!-- Sentry -->
@@ -2896,10 +2762,6 @@ span.ui-spinner a.ui-spinner-button {
 
 <!-- JSON-LD Markup -->
 
-
-
-
-
 <script type="application/ld+json">
 		{
 			"@context" : "http://schema.org",
@@ -2918,73 +2780,6 @@ span.ui-spinner a.ui-spinner-button {
 		}
 
         </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- facebookLogin -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- conversionTracking_naver -->
-
-
-
-
-
-<!-- custom_code_head -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- js -->
 <script
 	src="https://static.sixshop.com/resources/libs/ckeditor-4.9.2/ckeditor.js?v=04020701"></script>
 <script
@@ -3035,75 +2830,24 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-	<div class="hide">
-		<div id="data_div" data-memberNo="50936" data-id="" data-userName=""
-			data-sitePlan="trial" data-showNotice="1" data-ownerId=""
-			data-device="desktop" data-siteNo="50936" data-siteLink="miniromi"
-			data-siteName="Q-Park" data-siteKey="2019-04-10T10:40:40"
-			data-pageLink="untitled-2" data-pageNo="426986" data-pageType="page"
-			data-indexPageLink="home" data-pageName="주차정보/요금정산" data-sectionNo=""
-			data-itemNo="" data-productType="" data-productSoldOut=""
-			data-staticResourcePath="https://static.sixshop.com"
-			data-staticResourcePathCss="https://static.sixshop.com"
-			data-staticResourcePathJs="https://static.sixshop.com"
-			data-staticResourcePathLibs="https://static.sixshop.com"
-			data-staticResourcePathConents="//contents.sixshop.com"
-			data-imgResourcePath="https://thumb.sixshop.kr"
-			data-imgDirectResourcePath="https://contents.sixshop.com"
-			data-group="display" data-nowPage="display-home"
-			data-draftIndexPageLink="" data-domainCheck="SIXSHOP_DOMAIN"
-			data-nowSection="" data-result="" data-notice=""
-			data-displayType="display" data-defaultURI="/miniromi/untitled-2"
-			data-siteURI="/miniromi/" data-customerNo="0" data-customerGrade=""
-			data-customerGradeNo="" data-verifyInitializePassword=""
-			data-shopProductNo="" data-shopOrderNo="" data-postNo=""
-			data-boardNo="" data-postOrderNo="" data-gaTrackingId=""
-			data-errorType=""
-			data-siteDomainAddress="https://www.sixshop.com/miniromi"
-			data-installedAddonNameList="[googleAnalytics, googleWebMaster, naverWebMaster, snsShare, kcpAuth]"
-			data-facebookPixel="" data-googleAnalytics="" data-kakaoPixel=""
-			data-channel="" data-boardProductReviewUse=""
-			data-boardProductReviewPostPermission=""
-			data-boardProductReviewCommentPermission=""
-			data-boardProductQnaUse="" data-boardDisplayType=""
-			data-boardProductNo="" data-postProductOrderNo=""
-			data-postProductNo="" data-boardProductType=""
-			data-blogPostShareUse="" data-blogPostNo="" data-orderType=""
-			data-cartSize="0" data-buyKakaoCartNo="" data-buyNowCartNo=""
-			data-snsShare_detail_info='' data-additionalDiscountType=""
-			data-additionalDiscountRate="" data-additionalAccumulateRate=""
-			data-kcpSiteCd="" data-introAdultAuthUse="" data-adultAuthUse=""
-			data-personalInfoCollectionAgreement=""
-			data-settingApiKeysKakaoJavaScript=""
-			data-settingApiKeysKakaoRestApi="" data-kakaoPlusFriendId=""></div>
-	</div>
 
-	<!--[if lt IE 9]>
+	<c:if test="${myPayment.REGION == 1}">
+		<c:set var="REGIONNAME" value="율량로 주차장"></c:set>
+		<c:set var="AMOUNT" value="${myPayment.AMOUNT}원"></c:set>
 
+	</c:if>
 
+	<c:if test="${myPayment.REGION == 2}">
+		<c:set var="REGIONNAME" value="내수로 주차장"></c:set>
+		<c:set var="AMOUNT" value="${myPayment.AMOUNT}원"></c:set>
 
-<div id="ie8header">
-    <div style="height:60px;">
-    </div>
-    <div class="banner-wrapper ie">
-        <div class="content">
-            <a class="logo ie">
-            </a>
-            <div class="info">
-                <span class="useBoth">Internet Explorer의 오래된 버전을 사용하고 있습니다. 오래된 버전에서는 사이트가 정상적으로 표시되지 않습니다. 지금 업그레이드하세요.</span>
-            </div>
-            <a class="btn bordered btn-white middle"
-               href="http://windows.microsoft.com/ko-kr/internet-explorer/download-ie" target="_blank">
-                업그레이드하기
-            </a>
-        </div>
-    </div>
-</div>
-<![endif]-->
+	</c:if>
 
-	<!-- body section -->
+	<c:if test="${myPayment.REGION == 3}">
+		<c:set var="REGIONNAME" value="복대로 주차장"></c:set>
+		<c:set var="AMOUNT" value="${myPayment.AMOUNT}원"></c:set>
 
-
+	</c:if>
 
 
 
@@ -3111,6 +2855,84 @@ span.ui-spinner a.ui-spinner-button {
 		class="body device-desktop desktop page pageLink-untitled-2 snsBtnType- hero-notUse   productSearchMobileNotUse customerMenuMobileNotUse headerSnsNotUse productSearchType-mobile-icon productSearchType-english customerMenuType-english customerMenuType-mobile-icon cartType-english cartType-mobile-icon entire-style-width-type-wide header-style-effect-type-none header-style-effect-mobile-type-fixedAtTop hero-size-type-heightRelative hero-style-type-light hero-indexPage-height-type-fullScreen hero-otherPages-height-type-twoThirds hero-indexPage-height-mobile-type-fullScreen hero-otherPages-height-mobile-type-twoThirds hero-indexPage-ratio-type-3to1 hero-otherPages-ratio-type-3to1 logoImageWhenHeaderInHero-use hero-header-position-headerInHero hero-align-left hero-navi-type-none productList-width-type-wide productList-language-english productList-textPosition-underImg productList-filterPosition-top productList-column-desktop-4 productList-column-mobile-2 productList-badge-type-foursquare productList-badge-align-leftTop productList-hoverEffect-none productListSlide-width-type-wide productListSlide-textPosition-underImg productListSlide-column-desktop-4 productListSlide-column-mobile-2 productListSlide-margin-use productListSlide-hoverEffect-none board-language-english board-lineup-width-type-normal board-grid-width-type-wide board-grid-hoverEffect-none board-title-align-left board-grid-column-desktop-4 board-grid-column-mobile-2 blog-post-title-align-left blog-language-english blogGrid-filterPosition-top blog-grid-width-type-wide blog-grid-hoverEffect-none blog-sidebar-use blog-sidebar-position-rightSide gallery-style-light customSection-width-type-wide button-type-normal button-shape-square moveTopBtn-type-korean moveTopBtn-shape-square moveTopBtn-weight-normal moveTopBtn-border-notUse systemPage-productDetail-width-type-wide systemPage-productDetail-reviewQna-width-type-syncWithProductDetailBottomInfo systemPage-productDetail-relatedProduct-width-type-syncWithProductDetailBottomInfo systemPage-productDetail-buyButton-mobile-fixedPosition-notUse systemPage-productDetail-bottomInfo-mobile-fixedFontSize-notUse productDetail-mainImg-position-left productDetail-navigation-notUse sitePlan-trial logoImage-notExist logoImageWhenHeaderInHero-notExist siteHeader-notUse siteFooter-notUse document-loading"
 		data-device="desktop" data-viewport="desktop">
 
+
+
+		<div id="headerMenuList" class="headerMenuList mobile site-element"
+			data-itemType="header-menu">
+
+			<div class="mobileSideMenu">
+				<div class="headerLogoInMobileMenuWrapper">
+					<a id="headerLogoInMobileMenu" class="bottom" href="/miniromi/">
+						<span class="site-name">Q-Park</span>
+
+					</a>
+				</div>
+				<a id="headerCustomerInMobileMenu" class="bottom"> <span
+					class="headerCustomerContent" data-type="english">LOG IN</span> <span
+					class="headerCustomerContent" data-type="korean">로그인</span>
+					<div
+						class="headerCustomerContent icomoon-user systemIcon systemIconWeight_none"
+						data-type="icon"></div>
+					<div
+						class="headerCustomerContent icomoon-snowman systemIcon systemIconWeight_none"
+						data-type="icon-snowman"></div>
+				</a>
+			</div>
+			<div id="headerProductSearchInMobileMenu" class="bottom">
+				<div
+					class="headerProductSearchContent icomoon-search systemIcon systemIconWeight_none"
+					data-type="icon"></div>
+				<form action="" onsubmit="return false;">
+					<input type="search"
+						onkeyup="require('shop/shop').common.goSearchResultPage(event)">
+				</form>
+			</div>
+			<div
+				class="site-division-background-mobile site-division-background-mobile-color"></div>
+			<div class="site-division-background-mobile2"></div>
+
+			<div class="headerMenuListContents mobile">
+
+				<div data-pageno="422223" class="menu-navi menu-main pageMenu">
+					<a class="menu-name" href="/miniromi/home">HOME</a>
+					<div class="menu-opener"></div>
+					<div class="subMenuNaviListDiv">
+						<div class="subMenuNaviList"></div>
+					</div>
+				</div>
+				<div data-pageno="426986" class="menu-navi menu-main pageMenu">
+					<a class="menu-name" href="/miniromi/untitled-2">주차정보/요금정산</a>
+					<div class="menu-opener"></div>
+					<div class="subMenuNaviListDiv">
+						<div class="subMenuNaviList"></div>
+					</div>
+				</div>
+				<div data-pageno="426996" class="menu-navi menu-main pageMenu">
+					<a class="menu-name" href="/miniromi/untitled-3">Q-Park소개</a>
+					<div class="menu-opener"></div>
+					<div class="subMenuNaviListDiv">
+						<div class="subMenuNaviList"></div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+			<div class="headerSns mobile site-element" data-itemType="header-sns">
+
+
+
+
+
+
+
+
+
+
+			</div>
+		</div>
 
 		<div class="container-background background-color"></div>
 		<div class="container-background background-image"></div>
@@ -3123,13 +2945,29 @@ span.ui-spinner a.ui-spinner-button {
 		</div>
 
 
+
+
 		<div id="siteHeader"
-			class="siteHeader site-division  layout-type-normal-single-left1 layout-mobile-type-normal-center-left borderBottom-notUse headerMenuHamburgerBar-use placeholder">
+			class="siteHeader site-division  layout-type-normal-single-left1 layout-mobile-type-normal-center-left borderBottom-notUse headerMenuHamburgerBar-use">
+
+
+			<div
+				class="site-division-background header-background background-color"></div>
+			<div
+				class="site-division-background header-background background-image"
+				style="display: none;"></div>
+
 
 
 
 			<div class="row row-main desktop">
 				<div class="column header-left">
+
+
+
+
+
+
 
 					<a id="headerLogo" class="headerLogo desktop site-element"
 						data-itemType="logo" href="/miniromi/"> <span
@@ -3144,10 +2982,6 @@ span.ui-spinner a.ui-spinner-button {
 				</div>
 				<div class="column header-center"></div>
 				<div class="column header-right">
-
-
-
-
 
 					<div id="headerMenuList"
 						class="headerMenuList desktop site-element"
@@ -3180,10 +3014,6 @@ span.ui-spinner a.ui-spinner-button {
 
 						</div>
 					</div>
-
-
-
-
 
 
 					<div id="headerSns" class="headerSns desktop site-element"
@@ -3269,33 +3099,106 @@ span.ui-spinner a.ui-spinner-button {
 
 		</div>
 
+		<div id="siteHeader"
+			class="siteHeader site-division  layout-type-normal-single-left1 layout-mobile-type-normal-center-left borderBottom-notUse headerMenuHamburgerBar-use placeholder">
+
+
+
+			<div class="row row-main desktop">
+				<div class="column header-left">
+
+
+
+
+
+
+
+					<a id="headerLogo" class="headerLogo desktop site-element"
+						data-itemType="logo" href="/miniromi/"> <span
+						class="site-name">Q-Park</span>
+
+
+					</a>
+
+
+
+
+				</div>
+				<div class="column header-center"></div>
+				<div class="column header-right">
+
+
+
+
+
+					<div id="headerMenuList"
+						class="headerMenuList desktop site-element"
+						data-itemType="header-menu">
+
+
+						<div class="headerMenuListContents desktop">
+
+							<div data-pageno="422223" class="menu-navi menu-main pageMenu">
+								<a class="menu-name" href="/miniromi/home">HOME</a>
+								<div class="menu-opener"></div>
+								<div class="subMenuNaviListDiv">
+									<div class="subMenuNaviList"></div>
+								</div>
+							</div>
+							<div data-pageno="426986" class="menu-navi menu-main pageMenu">
+								<a class="menu-name" href="/miniromi/untitled-2">주차정보/요금정산</a>
+								<div class="menu-opener"></div>
+								<div class="subMenuNaviListDiv">
+									<div class="subMenuNaviList"></div>
+								</div>
+							</div>
+							<div data-pageno="426996" class="menu-navi menu-main pageMenu">
+								<a class="menu-name" href="/miniromi/untitled-3">Q-Park소개</a>
+								<div class="menu-opener"></div>
+								<div class="subMenuNaviListDiv">
+									<div class="subMenuNaviList"></div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="row row-main mobile">
+				<div class="column header-left">
+
+					<div id="headerMenuHamburgerBar"
+						class="headerMenuHamburgerBar site-element">
+						<div
+							class="icomoon-menu systemIcon menuIcon systemIconWeight_none"></div>
+					</div>
+
+
+
+				</div>
+				<div class="column header-center">
+
+
+
+
+
+
+
+					<a id="headerLogo" class="headerLogo mobile site-element"
+						data-itemType="logo" href="/miniromi/"> <span
+						class="site-name">Q-Park</span>
+
+
+					</a>
+
+				</div>
+			</div>
+			
+		</div>
+
 		<div id="displayCanvas" class="desktop" data-viewport="desktop">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3325,10 +3228,9 @@ span.ui-spinner a.ui-spinner-button {
 								style='text-align: center;'>
 								<div id='itemElement6005337' class='item-element'
 									style='width: 50%;'>
-									<a href="/Parking"> <img class='img ratio-default'
+									<img class='img ratio-default'
 										imgSrc='/uploadedFiles/50936/default/image_1518933691350.png'
 										src='https://contents.sixshop.com/thumbnails/uploadedFiles/50936/default/image_1518933691350_1000.png' />
-									</a>
 								</div>
 							</div>
 							<div id='item6005338' class='item-wrapper text-title'
@@ -3413,17 +3315,7 @@ span.ui-spinner a.ui-spinner-button {
 					</section>
 				</div>
 
-				<c:set var='sum1' value='0' />
-				<c:set var='sum2' value='0' />
-				<c:forEach items="${AmountList}" var="AmountList">
-					<c:if test="${AmountList.REGION eq '1' }">
-						<c:set var='sum1' value="${sum1+1}" />
-					</c:if>
 
-					<c:if test="${AmountList.REGION eq '2' }">
-						<c:set var='sum2' value="${sum2+1}" />
-					</c:if>
-				</c:forEach>
 				<div id='sectionWrapper2044846'
 					class='section-wrapper sectionWrapper2044846 element-section productList-section'
 					data-orderNo='4' cid='section2044846'>
@@ -3438,35 +3330,53 @@ span.ui-spinner a.ui-spinner-button {
 							<div id='itemElement6005511' class='item-element filter-use'>
 								<div class='productListFilterCollection'>
 									<div class='productListFilter-dropdownToggle'>
-										<div class='productListFilter-dropdownToggle-label label'>주차장</div>
+										<div class='productListFilter-dropdownToggle-label label'>All</div>
 										<div
 											class='productListFilter-dropdownToggle-icon icon icomoon-down'></div>
 									</div>
 									<div class='productListFilterCollectionNavi'>
-										<div class='productListFilter-navi'
-											productListFilter='allFilter'
-											onclick='require("shop/shopProduct").view.productListFunction.changeProductListFilter("allFilter", "push")'>All</div>
-										<div class='productListFilter-navi now'
-											productListFilter='136638'
+
+										<div class='productListFilter-navi' productListFilter='136638'
 											onclick='require("shop/shopProduct").view.productListFunction.changeProductListFilter("136638", "push")'>주차장</div>
 									</div>
 								</div>
 								<div id='productListWrapper6005511'
 									class='productListWrapper c-4 ratio-1to1'>
-									<div class='productListPage productListPage-1 now'>
-										<div
-											style="height: auto; width: 900px; border: 1px solid black;"
-											onclick="location.href='check1'">
-											<canvas id="1Area" width="1000" height="200"></canvas>
-											<p>${6-sum1}자리비어있습니다.</p>
-										</div>
-										<div
-											style="height: auto; width: 900px; border: 1px solid black;"
-											onclick="location.href='check2'">
-											<canvas id="2Area" width="1000" height="200"></canvas>
-											<p>${6-sum2}자리비어있습니다.</p>
-										</div>
 
+									<div class='productListPage productListPage-1 now'>
+										<div class='shopProductWrapper' data-productNo='326815'>
+											<div class='thumbDiv'>
+												<c:if test="${myPayment.REGION==1 }">
+													<a href=''> <img src="img/Region_1.png" width="300px">
+
+													</a>
+												</c:if>
+
+												<c:if test="${myPayment.REGION==2 }">
+													<a href=''> <img src="img/Region_2.png" width="300px">
+
+													</a>
+												</c:if>
+
+												<c:if test="${myPayment.REGION==3 }">
+													<a href=''> <img src="img/Region_3.png" width="300px">
+
+													</a>
+												</c:if>
+
+												<div class='shopProductNameAndPriceDiv'>
+													<div class='shopProductNameAndPriceContent'>
+														<div class='shopProductNameAndPrice'>
+															<div class='shopProduct productName' style="text-align:left">
+																<span>${REGIONNAME} : ${AMOUNT}</span>
+															</div>
+															
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -3552,7 +3462,10 @@ span.ui-spinner a.ui-spinner-button {
 							<div id='item6005364' class='item-wrapper text-body'
 								data-type='item' data-itemType='text-body' data-orderNo='2'
 								data-sectionNo='2044811' data-itemNo='6005364' cid='item6005364'
-								style=''></div>
+								style=''>
+								<div id='itemElement6005364' class='item-element' style=''>
+								</div>
+							</div>
 							<div id='item6005365' class='item-wrapper spacer-element'
 								data-type='item' data-itemType='spacer-element' data-orderNo='3'
 								data-sectionNo='2044811' data-itemNo='6005365' cid='item6005365'
@@ -3564,7 +3477,9 @@ span.ui-spinner a.ui-spinner-button {
 					</section>
 				</div>
 			</div>
-
+			<div id='page426996' cid='page426996' class='page pagepage'></div>
+			<div id='page422224' cid='page422224' class='page pagepage'></div>
+			<div id='page426912' cid='page426912' class='page pagepage'></div>
 		</div>
 
 
@@ -3572,4 +3487,3 @@ span.ui-spinner a.ui-spinner-button {
 	</div>
 </body>
 </html>
-

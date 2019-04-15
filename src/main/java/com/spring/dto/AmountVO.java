@@ -10,7 +10,18 @@ public class AmountVO {
 	private String CARNUMBER;
 	private String ENDTIME;
 	private String REGION;
+	private String ID;
 	
+	
+	
+
+	
+	public String getID() {
+		return ID;
+	}
+	public void setID(String ID) {
+		this.ID = ID;
+	}
 	public String getREGION() {
 		return REGION;
 	}
