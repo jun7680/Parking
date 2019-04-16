@@ -40,8 +40,7 @@ import com.user.service.UserService;
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	
+
 	@Inject
 	private AmountCheckService Amountservice;
 	// private UserService userSer2;
@@ -51,14 +50,14 @@ public class HomeController {
 	 */
 
 	HttpSession session = null;
-	MemberVO login=null;
+	MemberVO login = null;
 	String loginid = null;
-	
+	AmountVO LVO = null;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		
+
 		session = req.getSession();
 
 		if (login == null) {
@@ -69,7 +68,7 @@ public class HomeController {
 		} else {
 			session.setAttribute("member", login);
 			model.addAttribute("member", login);
-			System.out.println("Id is ->"+ login.getID());
+			System.out.println("Id is ->" + login.getID());
 			loginid = login.getID();
 			System.out.println("login test :" + session);
 			System.out.println("login test2 :" + login);
@@ -78,8 +77,7 @@ public class HomeController {
 
 		return "home";
 	}
-	
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String Login(Locale locale, Model model) {
 		logger.info("Welcome login! The client locale is {}.", locale);
@@ -95,50 +93,54 @@ public class HomeController {
 	@RequestMapping(value = "/loginCheck", method = RequestMethod.POST)
 	public String LoginCheck(MemberVO vo, HttpServletRequest req) throws Exception {
 
-		//session = req.getSession();
+		session = req.getSession();
 
 		login = userSer2.login(vo);
 
-		if (login == null) {
+		if (login == null)
 			session.setAttribute("member", null);
-		} else {
+		else
 			session.setAttribute("member", login);
-		}
+
 		System.out.println("login test 1 ->" + login);
 
 		return "/login/loginCheck";
 	}
 
 	@RequestMapping(value = "/check1", method = RequestMethod.GET)
-	public String AmountCheck1(Locale locale, Model model,AmountVO vo) throws Exception {
-		
-		//vo.setREGION("1");
+	public String AmountCheck1(Locale locale, Model model, AmountVO vo) throws Exception {
+
+		// vo.setREGION("1");
 		List<AmountVO> AmountList = Amountservice.selectAmount();
-		
+
 		System.out.println(AmountList);
 
 		model.addAttribute("AmountList", AmountList);
 		return "/amount/check1";
 	}
-	
+
 	@RequestMapping(value = "/check2", method = RequestMethod.GET)
-	public String AmountCheck2(Locale locale, Model model,AmountVO vo) throws Exception {
-		
-		//vo.setREGION("1");
+	public String AmountCheck2(Locale locale, Model model, AmountVO vo) throws Exception {
+
+		// vo.setREGION("1");
 		List<AmountVO> AmountList = Amountservice.selectAmount();
-		
+
 		System.out.println(AmountList);
 
 		model.addAttribute("AmountList", AmountList);
 		return "/amount/check2";
 	}
+
 	@RequestMapping(value = "/regionselect", method = RequestMethod.GET)
 	public String RegionSelect(Locale locale, Model model) throws Exception {
 
-		String returnUrl =null;
-		
-		if(login == null || login.equals("")) returnUrl = "/error/requireLogin";
-		else returnUrl="/amount/regionselect";
+		String returnUrl = null;
+
+		if (login == null || login.equals(""))
+			returnUrl = "/error/requireLogin";
+		else
+			returnUrl = "/amount/regionselect";
+
 		List<AmountVO> AmountList = Amountservice.selectAmount();
 		System.out.println(AmountList);
 		model.addAttribute("AmountList", AmountList);
@@ -198,93 +200,83 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("/register/step3");
 		return mv;
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		session = request.getSession(false);
-		if(session != null) {
+		if (session != null) {
 			session.invalidate();
 			login = null;
 			System.out.println("성공?");
-			
-			
+
 		}
 		return "/login/logout";
 	}
-	
+
 	@Autowired
 	private AmountCheckService bService;
 
-	@RequestMapping(value = "/parkingout1",method = RequestMethod.POST)
-	public String parkingout1(AmountVO vo) throws Exception{
+	@RequestMapping(value = "/parkingout1", method = RequestMethod.POST)
+	public String parkingout1(AmountVO vo) throws Exception {
 		System.out.println("car insert");
-		
+
 		Calendar time = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");		
-		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
 		vo.setENDTIME(dateFormat.format(time.getTime()));
-		
-		
+
 		bService.updateEndTime1(vo);
-		
+
 		return "/amount/parkingout";
-		
-		
-	}	
-	
-	@RequestMapping(value = "/parkingout2",method = RequestMethod.POST)
-	public String parkingout2(AmountVO vo) throws Exception{
+
+	}
+
+	@RequestMapping(value = "/parkingout2", method = RequestMethod.POST)
+	public String parkingout2(AmountVO vo) throws Exception {
 		System.out.println("car insert");
-		
+
 		Calendar time = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");		
-		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
 		vo.setENDTIME(dateFormat.format(time.getTime()));
-		
-		
+
 		bService.updateEndTime2(vo);
-		
+
 		return "/amount/parkingout";
-		
-		
-	}	
+
+	}
 
 	@Autowired
 	private AmountCheckService aService;
 
-	@RequestMapping(value = "/carNumberCheck1",method = RequestMethod.POST)
-	public String carnumber1(AmountVO vo) throws Exception{
-		
+	@RequestMapping(value = "/carNumberCheck1", method = RequestMethod.POST)
+	public String carnumber1(AmountVO vo) throws Exception {
+
 		System.out.println("car insert");
-		
+
 		System.out.println(login.getID());
-		
+
 		vo.setID(login.getID());
 		aService.updateCar1(vo);
-		
-		
+
 		return "/amount/carNumberCheck";
-		
-		
+
 	}
-	
-	
-	@RequestMapping(value = "/carNumberCheck2",method = RequestMethod.POST)
-	public String carnumber2(AmountVO vo) throws Exception{
+
+	@RequestMapping(value = "/carNumberCheck2", method = RequestMethod.POST)
+	public String carnumber2(AmountVO vo) throws Exception {
 		System.out.println("car insert");
-		
+
 		aService.updateCar2(vo);
-		
+
 		return "/amount/carNumberCheck";
-		
-		
+
 	}
-	
-	
+
 	/**
 	 * Admin menu
 	 */
-	
+
 	@RequestMapping(value = "/payment", method = RequestMethod.GET)
 	public String Payment(Model model) throws Exception {
 
@@ -293,31 +285,38 @@ public class HomeController {
 		model.addAttribute("Payment", PaymentList);
 		return "/admin/payment";
 	}
-	
-	
-	
-	@RequestMapping(value="/feecalculation", method=RequestMethod.GET)
-	public String FeeCalculation(Model model,AmountVO vo) throws Exception{
-		AmountVO LVO = null;
-		
-		vo.setID(login.getID());
-		LVO = Amountservice.myPayment(vo);
-		System.out.println(LVO);
-		
-		//model.addAttribute("myPayment");
-		//List<AmountVO> myPayment = aService.myPayment();
-		
-//		System.out.println(myPayment);
-//		
-		model.addAttribute("myPayment", LVO);
-//		model.addAttribute("loginid",login.getID());
-				
-		return"/feepayment/feepayment";
-		
+
+	@RequestMapping(value = "/feecalculation", method = RequestMethod.GET)
+	public String FeeCalculation(Model model, AmountVO vo) throws Exception {
+		LVO = null;
+
+		String returnUrl = null;
+
+		System.out.println("login?" + login);
+		if (login == null || login.equals(""))
+			returnUrl = "/error/requireLogin";
+		else {
+			vo.setID(login.getID());
+			LVO = Amountservice.myPayment(vo);
+			System.out.println(LVO);
+			model.addAttribute("myPayment", LVO);
+			returnUrl = "/feepayment/feepayment";
+		}
+
+		return returnUrl;
+
 	}
-
 	
-	
+	@RequestMapping(value = "/billing", method = RequestMethod.GET)
+	public String BillingScreen(Model model, AmountVO vo) throws Exception {
+		
+		String returnUrl = "/feepayment/billingscreen";
+		System.out.println(LVO+"billing screen");
+		model.addAttribute("myPayment",LVO);
 
+
+		return returnUrl;
+
+	}
 
 }
