@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+
+
+	<select id="myCart" resultType="com.spring.dto.CartVO">
+	 <![CDATA[
+	 select * from PayInformation where PAYMENT='N'AND ID=#{ID};
+      ]]>
+	</select>
+
+
+	<insert id="addCart">
+        <![CDATA[
+            INSERT INTO CartTable
+            (
+                ID,
+                AMOUNT,
+                REGIONNAME,
+                PAYMENT,
+                IMAGEURL
+            )
+            VALUES
+            (
+                #{ID},
+                #{AMOUNT},
+                #{REGIONNAME},
+                'N',
+                #{IMAGEURL}
+           
+            )
+        ]]>
+	</insert>
+
+
+	<update id="updateCart" parameterType="com.spring.dto.CartVO">
+	<![CDATA[
+		update CartTable SET PRODUCTCOUNT=PRODUCTCOUNT+1, IMAGEURL=#{IMAGEURL} WHERE ID = #{ID}
+		
+	
+	]]>
+	</update>
+
+
+
+
+
+</mapper>
+

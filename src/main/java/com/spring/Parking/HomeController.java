@@ -15,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.amount.service.AmountCheckService;
 import com.spring.dto.AmountVO;
+import com.spring.dto.CartVO;
 import com.spring.dto.MemberVO;
 import com.spring.exception.AlreadyExistingEmailException;
 import com.spring.exception.AlreadyExistingIdException;
@@ -53,6 +53,7 @@ public class HomeController {
 	MemberVO login = null;
 	String loginid = null;
 	AmountVO LVO = null;
+	CartVO CartList = null;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
@@ -97,14 +98,19 @@ public class HomeController {
 
 		login = userSer2.login(vo);
 
-		if (login == null)
+		String returnUrl = "";
+
+		if (login == null) {
 			session.setAttribute("member", null);
-		else
+			returnUrl = "/error/loginError";
+		} else {
 			session.setAttribute("member", login);
+			returnUrl = "/login/loginCheck";
+		}
 
 		System.out.println("login test 1 ->" + login);
 
-		return "/login/loginCheck";
+		return returnUrl;
 	}
 
 	@RequestMapping(value = "/check1", method = RequestMethod.GET)
@@ -174,9 +180,6 @@ public class HomeController {
 
 	@Resource(name = "userService")
 	private UserService userSer;
-
-	@Autowired
-	private BCryptPasswordEncoder br;
 
 	@RequestMapping("/step3")
 	public ModelAndView step3(RegisterRequest regReq, Errors errors) throws Exception {
@@ -306,14 +309,54 @@ public class HomeController {
 		return returnUrl;
 
 	}
-	
-	@RequestMapping(value = "/billing", method = RequestMethod.GET)
-	public String BillingScreen(Model model, AmountVO vo) throws Exception {
-		
-		String returnUrl = "/feepayment/billingscreen";
-		System.out.println(LVO+"billing screen");
-		model.addAttribute("myPayment",LVO);
 
+	String parsePath="";
+	@RequestMapping(value = "/billing", method = RequestMethod.GET)
+	public String BillingScreen(Model model, AmountVO vo, CartVO CVO, HttpServletRequest request) throws Exception {
+	
+		CVO.setID(login.getID());
+		CartList = Amountservice.myCart(CVO);
+
+		String returnUrl = "/feepayment/billingscreen";
+
+		System.out.println(LVO + "billing screen");
+
+		model.addAttribute("myPayment", LVO);
+
+		System.out.println(CartList + " List is");
+
+		model.addAttribute("myCart", CartList);
+		return returnUrl;
+
+	}
+
+	@RequestMapping(value = "/addcart", method = RequestMethod.GET)
+	public String addCart(Model model, CartVO CVO) throws Exception {
+
+		String returnUrl = "/cart/cartOk";
+
+		System.out.println(parsePath);
+		CVO.setID(login.getID());
+
+		Amountservice.updateAddCart(CVO);
+
+		// model.addAttribute("myCart", CartList);
+
+		return returnUrl;
+
+	}
+
+	@RequestMapping(value = "/cart", method = RequestMethod.GET)
+	public String Cart(Model model, CartVO CVO) throws Exception {
+
+		String returnUrl = "/cart/cart";
+
+		CVO.setID(login.getID());
+
+		CartList = Amountservice.myCart(CVO);
+
+		System.out.println(CartList+"this is Cart");
+		model.addAttribute("myCart", CartList);
 
 		return returnUrl;
 

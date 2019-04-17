@@ -75,6 +75,44 @@
 	]]>
 	
 	</select>
+	
+	<select id="myCart" resultType="com.spring.dto.CartVO">
+	 <![CDATA[
+	 select * from CartTable where PAYMENT='N'AND ID=#{ID};
+      ]]>
+	</select>
+
+
+	<insert id="addCart">
+        <![CDATA[
+            INSERT INTO CartTable
+            (
+                ID,
+                AMOUNT,
+                REGIONNAME,
+                PAYMENT,
+                IMAGEURL
+            )
+            VALUES
+            (
+                #{ID},
+                #{AMOUNT},
+                #{REGIONNAME},
+                'N',
+                #{IMAGEURL}
+           
+            )
+        ]]>
+	</insert>
+
+
+	<update id="updateCart" parameterType="com.spring.dto.CartVO">
+	<![CDATA[
+		update CartTable SET PRODUCTCOUNT=PRODUCTCOUNT+1 WHERE ID = #{ID}
+		
+	
+	]]>
+	</update>
 
 
 

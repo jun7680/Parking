@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.spring.dto.AmountVO;
+import com.spring.dto.CartVO;
 
 @Repository
 public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
@@ -47,6 +48,15 @@ public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
 	
 	public AmountVO myPayment(AmountVO vo) throws Exception{
 		return (AmountVO) selectOne("amount.mypayment", vo);
+	}
+	
+	public CartVO myCart(CartVO vo) throws Exception{
+		return (CartVO) selectOne("amount.myCart",vo);
+	}
+	
+	@Override
+	public void updateAddCart(CartVO vo) throws Exception{
+		sqlSession.update("amount.updateCart",vo);
 	}
 
 }

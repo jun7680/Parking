@@ -3,6 +3,7 @@ package com.spring.dao;
 import java.util.List;
 
 import com.spring.dto.AmountVO;
+import com.spring.dto.CartVO;
 
 public interface AmountDAO {
 	
@@ -19,5 +20,8 @@ public interface AmountDAO {
 	
 	public AmountVO myPayment(AmountVO vo) throws Exception;
 	
+	public CartVO myCart(CartVO vo) throws Exception;
+	
+	public void updateAddCart(CartVO vo) throws Exception;
 
 }

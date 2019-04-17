@@ -2,10 +2,8 @@ package com.user.service;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.dao.AmountDAO;
 import com.spring.dao.MemberDAO;
 import com.spring.dto.MemberVO;
 import com.spring.exception.AlreadyExistingEmailException;
@@ -17,9 +15,6 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDAO")
 	private MemberDAO userDAO;
-	
-	@Autowired
-	private AmountDAO dao;
 
 	@Override
 	public void register(RegisterRequest regReq) throws Exception {

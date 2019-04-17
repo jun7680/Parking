@@ -2640,28 +2640,7 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-<title>내수동로 주차장</title>
-
-
-
-
-
-
-
-<meta name="description"
-	content="충청북도 청주시 서원구 내수동로 105 백두산한의원 앞 노상주차장​​​" />
-
-
-
-
-
-
-
-
-
-
-<link rel="image_src"
-	href="https://contents.sixshop.com/uploadedFiles/50936/product/image_1518957505128.png" />
+<title>Q-Park</title>
 
 
 
@@ -3147,8 +3126,6 @@ span.ui-spinner a.ui-spinner-button {
 					</div>
 
 
-
-
 					<div id="headerCartAndCustomer"
 						class="headerCartAndCustomer desktop site-element"
 						data-itemType="cartAndCustomer">
@@ -3159,9 +3136,18 @@ span.ui-spinner a.ui-spinner-button {
 							<div
 								class="headerProductSearchContent icomoon-search systemIcon systemIconWeight_none"
 								data-type="icon"></div>
-						</a><a id="headerCart" class="headerCart desktop site-element-child">
-							<span class="headerCartContent" data-type="english">CART</span> <span
-							class="headerCartContent" data-type="korean">장바구니</span>
+						</a><a href="cart" id="headerCart"
+							class="headerCart desktop site-element-child"> <c:if
+								test="${myCart==null || myCart.PRODUCTCOUNT==0}">
+								<span class="headerCartContent" data-type="english">CART
+								</span>
+								<span class="headerCartContent" data-type="korean">장바구니</span>
+
+							</c:if> <c:if test="${myCart !=null && myCart.PRODUCTCOUNT!=0}">
+								<span class="headerCartContent" data-type="english">CART
+								</span><span> (${myCart.PRODUCTCOUNT})</span>
+								<span class="headerCartContent" data-type="korean">장바구니</span>
+							</c:if>
 							<div
 								class="headerCartContent icomoon-cart systemIcon systemIconWeight_none"
 								data-type="icon"></div>
@@ -3231,7 +3217,8 @@ span.ui-spinner a.ui-spinner-button {
 							<div
 								class="headerCustomerContent icomoon-snowman systemIcon systemIconWeight_none"
 								data-type="icon-snowman"></div>
-						</a><a id="headerCart" class="headerCart mobile site-element-child">
+						</a><a href="cart" id="headerCart"
+							class="headerCart mobile site-element-child">
 							<div
 								class="headerCartContent icomoon-cart systemIcon systemIconWeight_none"
 								data-type="icon"></div>
@@ -3356,8 +3343,9 @@ span.ui-spinner a.ui-spinner-button {
 							<div
 								class="headerCustomerContent icomoon-snowman systemIcon systemIconWeight_none"
 								data-type="icon-snowman"></div>
-						</a><a id="headerCart" class="headerCart desktop site-element-child">
-							<span class="headerCartContent" data-type="english">CART</span> <span
+						</a><a href="cart" id="headerCart"
+							class="headerCart desktop site-element-child"> <span
+							class="headerCartContent" data-type="english">CART</span> <span
 							class="headerCartContent" data-type="korean">장바구니</span>
 							<div
 								class="headerCartContent icomoon-cart systemIcon systemIconWeight_none"
@@ -3428,7 +3416,8 @@ span.ui-spinner a.ui-spinner-button {
 							<div
 								class="headerCustomerContent icomoon-snowman systemIcon systemIconWeight_none"
 								data-type="icon-snowman"></div>
-						</a><a id="headerCart" class="headerCart mobile site-element-child">
+						</a><a href="cart" id="headerCart"
+							class="headerCart mobile site-element-child">
 							<div
 								class="headerCartContent icomoon-cart systemIcon systemIconWeight_none"
 								data-type="icon"></div>
@@ -3622,7 +3611,7 @@ span.ui-spinner a.ui-spinner-button {
 									<div class="btn-wrapper cartButton">
 										<button id="btn_addToCart"
 											class="addToCart designSettingElement button outline "
-											onclick="require('shop/shopProduct').detail.handlePurchase('', event)">장바구니에
+											onclick="location.href='addcart'">장바구니에
 											담기</button>
 									</div>
 								</div>
@@ -3677,20 +3666,7 @@ span.ui-spinner a.ui-spinner-button {
 
 					<div class="bottom-info designSettingElement shape">
 
-						<div class="productDetailSection">
-							<div id="productDescriptionDetailPage"
-								class="title designSettingElement text-body viewDetail ckeditor-content">
-								<figure class="image">
-									<img alt="" height="500"
-										src="https://contents.sixshop.com/thumbnails/uploadedFiles/50936/product/image_1518954841573_1000.png"
-										style="max-height: 500px; max-width: 100%" width="800" />
-									<figcaption>충청북도 청주시 서원구 내수동로 105 백두산한의원 앞 노상주차장
-
-										​​​</figcaption>
-								</figure>
-
-							</div>
-						</div>
+						
 
 					</div>
 
@@ -3776,7 +3752,7 @@ span.ui-spinner a.ui-spinner-button {
 								<div class="btn-wrapper cartButton">
 									<button id="btn_addToCartClone"
 										class="addToCart designSettingElement button outline "
-										onclick="require('shop/shopProduct').detail.handlePurchase('', event)">장바구니에
+										onclick="addCart">장바구니에
 										담기</button>
 								</div>
 							</div>

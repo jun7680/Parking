@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.dao.AmountDAO;
 import com.spring.dto.AmountVO;
+import com.spring.dto.CartVO;
 
 @Service
 public class AmountCheckServiceImpl implements AmountCheckService{
@@ -49,6 +50,17 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	public AmountVO myPayment(AmountVO vo) throws Exception {
 		return dao.myPayment(vo);
 	}
+	
+	@Override
+	public CartVO myCart(CartVO vo) throws Exception{
+		return dao.myCart(vo);
+	}
+	
+	@Override
+	public void updateAddCart(CartVO vo) throws Exception{
+		dao.updateAddCart(vo);
+	}
+	
 	
 
 }
