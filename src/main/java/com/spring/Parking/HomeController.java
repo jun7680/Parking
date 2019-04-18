@@ -1,9 +1,11 @@
 package com.spring.Parking;
 
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Locale;
 
@@ -54,6 +56,9 @@ public class HomeController {
 	String loginid = null;
 	AmountVO LVO = null;
 	CartVO CartList = null;
+	String imgUrl = null;
+	String regionName = null;
+	String amount = null;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
@@ -182,7 +187,7 @@ public class HomeController {
 	private UserService userSer;
 
 	@RequestMapping("/step3")
-	public ModelAndView step3(RegisterRequest regReq, Errors errors) throws Exception {
+	public ModelAndView step3(RegisterRequest regReq, Errors errors, CartVO vo) throws Exception {
 		new RegisterRequestValidator().validate(regReq, errors);
 
 		if (errors.hasErrors()) {
@@ -191,6 +196,10 @@ public class HomeController {
 		}
 		try {
 			userSer.register(regReq);
+			vo.setID(regReq.getId());
+			
+			Amountservice.insertAddCart(vo);
+			
 		} catch (AlreadyExistingEmailException e) {
 			errors.rejectValue("email", "duplicate", "이메일을 확인해 주세요.");
 			ModelAndView mv = new ModelAndView("/register/step2");
@@ -310,11 +319,27 @@ public class HomeController {
 
 	}
 
-	String parsePath="";
+	String parsePath = "";
+
 	@RequestMapping(value = "/billing", method = RequestMethod.GET)
 	public String BillingScreen(Model model, AmountVO vo, CartVO CVO, HttpServletRequest request) throws Exception {
 	
+		Enumeration params = request.getParameterNames();
+		String strParam = "";
+		String value="";
+		while (params.hasMoreElements()) {
+			String name = (String) params.nextElement();
+			value = URLEncoder.encode(request.getParameter(name), "UTF-8");
+			strParam += name + "=" + value + "&";
+		}
+
+		imgUrl = request.getParameter("img");
+		amount = request.getParameter("amount");
+		regionName = request.getParameter("regionname");
+		System.out.println(amount + "billing screen");
 		CVO.setID(login.getID());
+		
+		
 		CartList = Amountservice.myCart(CVO);
 
 		String returnUrl = "/feepayment/billingscreen";
@@ -337,6 +362,9 @@ public class HomeController {
 
 		System.out.println(parsePath);
 		CVO.setID(login.getID());
+		CVO.setIMAGEURL(imgUrl);
+		CVO.setAMOUNT(amount);
+		CVO.setREGIONNAME(regionName);
 
 		Amountservice.updateAddCart(CVO);
 
@@ -355,7 +383,7 @@ public class HomeController {
 
 		CartList = Amountservice.myCart(CVO);
 
-		System.out.println(CartList+"this is Cart");
+		System.out.println(CartList + "this is Cart");
 		model.addAttribute("myCart", CartList);
 
 		return returnUrl;

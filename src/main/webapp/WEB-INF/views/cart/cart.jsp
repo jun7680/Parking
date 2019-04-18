@@ -2,12 +2,7 @@
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
-
-
-
-
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -3548,31 +3543,71 @@ span.ui-spinner a.ui-spinner-button {
 						<span class="title">장바구니 <span id="cartSize"></span></span>
 					</div>
 					<c:if test="${myCart.PRODUCTCOUNT !=0 }">
+						<c:set var="IMG" value="${myCart.IMAGEURL}"></c:set>
+
 						<div
 							class="product field designSettingElement text-body shopCartInfo">
 							<div class="tb-title heading-font designSettingElement shape">
 								<span class="name">상품 정보</span> <span class="qty">수량</span> <span
 									class="price">가격</span> <span class="deleteIcon">&nbsp;</span>
 							</div>
-							<div id="cartListDiv" class="tb-content"></div>
+							<div id="cartListDiv" class="tb-content">
+								<div class="info cartDiv designSettingElement shape"
+									id="cartDiv5831206">
+									<div class="product">
+										<div class="img">
+											<a href="/Parking/regionselect"> <img src="${IMG}"
+												width="127.5px" height="79.47px">
+											</a>
+										</div>
+										<div class="text">
+											<div class="name">
+												<a href="/Parking/regionselect">${myCart.REGIONNAME }</a>
+											</div>
+											<div class="option"></div>
+											<div class="additionaloption"></div>
+											<div class="option"></div>
+										</div>
+									</div>
+									<div class="QuantityDiv">
+										<span
+											class="ui-spinner ui-corner-all ui-widget ui-widget-content"
+											style="height: 19px;">${myCart.PRODUCTCOUNT }</span>
+									</div>
+									<div class="shopCartPrice price">${myCart.AMOUNT }</div>
+									<div class="deleteIconDIv">
+										<i
+											class="designSettingElement text-assi icomoon-ic-close-small"
+											onclick="require('shop/shop').cart().common.deleteCartByCartNo('50936','0','5831206')"></i>
+									</div>
+								</div>
+							</div>
+
+
+							<c:set var="MYAMOUNT" value="${myCart.AMOUNT }" />
+							<c:set var="lastIndex" value="${fn:length(MYAMOUNT) }" />
+							<c:set var="subAmount"
+								value="${ fn:substring(MYAMOUNT,0,lastIndex-1)}" />
+							<c:set var="sum" value="${ subAmount * myCart.PRODUCTCOUNT}" />
 							<div class="tb-total clearfix">
 								<div class="info designSettingElement shape">
 									<div class="price">
 										<div class="title article-font">상품 합계</div>
 										<div id="cartTotalProductPrice" class="content heading-font">₩
-											0</div>
+											${sum}원</div>
 									</div>
 								</div>
 								<div class="total" style="margin-bottom: 0;"></div>
 							</div>
 						</div>
+
+						<div class="btn-wrapper shopCartInfo ">
+							<button id="btn_orderProducts"
+								class="article-font accent-color designSettingElement button">주문하기</button>
+						</div>
 					</c:if>
 
 
-					<div class="btn-wrapper shopCartInfo hide">
-						<button id="btn_orderProducts"
-							class="article-font accent-color designSettingElement button">주문하기</button>
-					</div>
 
 					<c:if test="${myCart == null || myCart.PRODUCTCOUNT==0}">
 

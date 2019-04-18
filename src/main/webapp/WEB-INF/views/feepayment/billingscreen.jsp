@@ -3145,7 +3145,8 @@ span.ui-spinner a.ui-spinner-button {
 
 							</c:if> <c:if test="${myCart !=null && myCart.PRODUCTCOUNT!=0}">
 								<span class="headerCartContent" data-type="english">CART
-								</span><span> (${myCart.PRODUCTCOUNT})</span>
+								</span>
+								<span> (${myCart.PRODUCTCOUNT})</span>
 								<span class="headerCartContent" data-type="korean">장바구니</span>
 							</c:if>
 							<div
@@ -3492,6 +3493,8 @@ span.ui-spinner a.ui-spinner-button {
 								document.getElementById("myPayment").innerHTML = amount;
 								document.getElementById("nodiscountPayment").innerHTML = parseInt(amount)
 										+ 500 + "원";
+								document.getElementById("AMOUNT").value = amount.substr(0, amount.length-1);
+								document.getElementById("REGIONNAME").value = regionname;
 
 							});
 		</script>
@@ -3609,10 +3612,19 @@ span.ui-spinner a.ui-spinner-button {
 											구매하기</button>
 									</div>
 									<div class="btn-wrapper cartButton">
-										<button id="btn_addToCart"
-											class="addToCart designSettingElement button outline "
-											onclick="location.href='addcart'">장바구니에
-											담기</button>
+										<form role="form" method="get" action="addcart">
+											<p>
+												<input type="hidden" id="AMOUNT" name="AMOUNT" value="" />
+											</p>
+											<p>
+											<input type="hidden"
+													id="REGIONNAME" name="REGIONNAME" value=""/>
+
+											</p>
+											<button id="btn_addToCart"
+												class="addToCart designSettingElement button outline "
+												>장바구니에 담기</button>
+										</form>
 									</div>
 								</div>
 
@@ -3664,11 +3676,7 @@ span.ui-spinner a.ui-spinner-button {
 						</div>
 					</div>
 
-					<div class="bottom-info designSettingElement shape">
-
-						
-
-					</div>
+					<div class="bottom-info designSettingElement shape"></div>
 
 
 
@@ -3752,8 +3760,7 @@ span.ui-spinner a.ui-spinner-button {
 								<div class="btn-wrapper cartButton">
 									<button id="btn_addToCartClone"
 										class="addToCart designSettingElement button outline "
-										onclick="addCart">장바구니에
-										담기</button>
+										onclick="addCart">장바구니에 담기</button>
 								</div>
 							</div>
 							<div class="btn-wrapper restockButton hide">

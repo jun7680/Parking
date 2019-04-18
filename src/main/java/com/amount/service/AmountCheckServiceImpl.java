@@ -61,6 +61,11 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 		dao.updateAddCart(vo);
 	}
 	
+	@Override
+	public void insertAddCart(CartVO vo) throws Exception{
+		dao.insertAddCart(vo);
+	}
+	
 	
 
 }

@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDAO")
 	private MemberDAO userDAO;
-
 	@Override
 	public void register(RegisterRequest regReq) throws Exception {
 		MemberVO email = userDAO.selectByEmail(regReq.getEmail());
@@ -27,6 +26,8 @@ public class UserServiceImpl implements UserService {
 			throw new AlreadyExistingIdException(regReq.getId() + " is duplicate id.");
 		}
 		userDAO.insertUser(regReq);
+	
+		
 	}
 
 	@Override

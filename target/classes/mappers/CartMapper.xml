@@ -19,7 +19,8 @@
                 AMOUNT,
                 REGIONNAME,
                 PAYMENT,
-                IMAGEURL
+                IMAGEURL,
+                PRODUCTCOUNT
             )
             VALUES
             (
@@ -27,7 +28,8 @@
                 #{AMOUNT},
                 #{REGIONNAME},
                 'N',
-                #{IMAGEURL}
+                #{IMAGEURL},
+                0
            
             )
         ]]>
@@ -36,7 +38,7 @@
 
 	<update id="updateCart" parameterType="com.spring.dto.CartVO">
 	<![CDATA[
-		update CartTable SET PRODUCTCOUNT=PRODUCTCOUNT+1, IMAGEURL=#{IMAGEURL} WHERE ID = #{ID}
+		update CartTable SET PRODUCTCOUNT=PRODUCTCOUNT+1, IMAGEURL=#{IMAGEURL}, AMOUNT=#{AMOUNT},REGIONNAME=#{REGIONNAME} WHERE ID = #{ID}
 		
 	
 	]]>

@@ -56,7 +56,12 @@ public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
 	
 	@Override
 	public void updateAddCart(CartVO vo) throws Exception{
-		sqlSession.update("amount.updateCart",vo);
+		sqlSession.update("cart.updateCart",vo);
+	}
+	
+	@Override
+	public void insertAddCart(CartVO vo) throws Exception{
+		sqlSession.insert("cart.addCart",vo);
 	}
 
 }

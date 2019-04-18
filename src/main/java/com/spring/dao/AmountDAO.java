@@ -23,5 +23,7 @@ public interface AmountDAO {
 	public CartVO myCart(CartVO vo) throws Exception;
 	
 	public void updateAddCart(CartVO vo) throws Exception;
+	
+	public void insertAddCart(CartVO vo) throws Exception;
 
 }
