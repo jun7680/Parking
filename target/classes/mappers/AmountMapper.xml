@@ -76,6 +76,16 @@
 	
 	</select>
 	
+	
+	
+	<select id="lookup" resultType="com.spring.dto.AmountVO">
+	
+	<![CDATA[
+		 select *
+	 from PayInformation where PAYMENT='N' AND CARNUMBER=#{CARNUMBER}
+	]]>
+	
+	</select>
 	<select id="myCart" resultType="com.spring.dto.CartVO">
 	 <![CDATA[
 	 select * from CartTable where PAYMENT='N'AND ID=#{ID};

@@ -63,5 +63,9 @@ public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
 	public void insertAddCart(CartVO vo) throws Exception{
 		sqlSession.insert("cart.addCart",vo);
 	}
+	
+	public AmountVO lookupPayment(AmountVO vo) throws Exception{
+		return (AmountVO) selectOne("amount.lookup", vo);
+	}
 
 }

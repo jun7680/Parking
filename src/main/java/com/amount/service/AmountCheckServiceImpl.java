@@ -67,5 +67,11 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 	}
 	
 	
+	@Override
+	public AmountVO lookupPayment(AmountVO vo) throws Exception{
+		return dao.lookupPayment(vo);
+	}
+	
+	
 
 }

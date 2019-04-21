@@ -25,5 +25,7 @@ public interface AmountDAO {
 	public void updateAddCart(CartVO vo) throws Exception;
 	
 	public void insertAddCart(CartVO vo) throws Exception;
+	
+	public AmountVO lookupPayment(AmountVO vo) throws Exception;
 
 }

@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
@@ -2762,27 +2763,6 @@ span.ui-spinner a.ui-spinner-button {
 	};
 </script>
 
-
-<!-- JSON-LD Markup -->
-
-<script type="application/ld+json">
-		{
-			"@context" : "http://schema.org",
-			"@type" : "Organization",
-			"name" : "Q-Park",
-			"legalName" : "경매인오피스",
-			"url" : "https://auctioncourt.xyz",
-			"logo": "https://thumb.sixshop.kr?width=2000",
-			"contactPoint": {
- 				"@type": "ContactPoint",
- 				"contactType": "customer support",
- 				"telephone": "010-9969-5699",
- 				"email": "dr.choimin@gmail.com"
- 			},
-			"sameAs" : 
-		}
-
-        </script>
 <script
 	src="https://static.sixshop.com/resources/libs/ckeditor-4.9.2/ckeditor.js?v=04020701"></script>
 <script
@@ -2834,23 +2814,15 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-	<c:if test="${myPayment.REGION == 1}">
-		<c:set var="REGIONNAME" value="율량로 주차장"></c:set>
-		<c:set var="AMOUNT" value="${myPayment.AMOUNT}"></c:set>
 
-	</c:if>
 
-	<c:if test="${myPayment.REGION == 2}">
-		<c:set var="REGIONNAME" value="내수로 주차장"></c:set>
-		<c:set var="AMOUNT" value="${myPayment.AMOUNT}"></c:set>
 
-	</c:if>
 
-	<c:if test="${myPayment.REGION == 3}">
-		<c:set var="REGIONNAME" value="복대로 주차장"></c:set>
-		<c:set var="AMOUNT" value="${myPayment.AMOUNT}"></c:set>
 
-	</c:if>
+
+
+
+
 
 
 
@@ -2976,6 +2948,7 @@ span.ui-spinner a.ui-spinner-button {
 						data-itemType="logo" href="/miniromi/"> <span
 						class="site-name">Q-Park</span>
 
+
 					</a>
 
 
@@ -2993,7 +2966,7 @@ span.ui-spinner a.ui-spinner-button {
 						<div class="headerMenuListContents desktop">
 
 							<div data-pageno="422223" class="menu-navi menu-main pageMenu">
-								<a class="menu-name" href="/Parking">HOME</a>
+								<a class="menu-name" href="/miniromi/home">HOME</a>
 								<div class="menu-opener"></div>
 								<div class="subMenuNaviListDiv">
 									<div class="subMenuNaviList"></div>
@@ -3037,6 +3010,12 @@ span.ui-spinner a.ui-spinner-button {
 				</div>
 				<div class="column header-center">
 
+
+
+
+
+
+
 					<a id="headerLogo" class="headerLogo mobile site-element"
 						data-itemType="logo" href="/miniromi/"> <span
 						class="site-name">Q-Park</span>
@@ -3045,6 +3024,8 @@ span.ui-spinner a.ui-spinner-button {
 					</a>
 
 				</div>
+
+
 				<div class="column header-right">
 
 
@@ -3112,6 +3093,8 @@ span.ui-spinner a.ui-spinner-button {
 					<a id="headerLogo" class="headerLogo desktop site-element"
 						data-itemType="logo" href="/miniromi/"> <span
 						class="site-name">Q-Park</span>
+
+
 					</a>
 
 
@@ -3303,9 +3286,6 @@ span.ui-spinner a.ui-spinner-button {
 					</section>
 				</div>
 
-
-
-
 				<div id='sectionWrapper2044846'
 					class='section-wrapper sectionWrapper2044846 element-section productList-section'
 					data-orderNo='4' cid='section2044846'>
@@ -3326,109 +3306,83 @@ span.ui-spinner a.ui-spinner-button {
 									</div>
 									<div class='productListFilterCollectionNavi'>
 
-										<div class='productListFilter-navi' productListFilter='136638'
-											onclick='require("shop/shopProduct").view.productListFunction.changeProductListFilter("136638", "push")'>주차장</div>
+										<div class='productListFilter-navi' productListFilter='136638'>요금
+											조회</div>
 									</div>
 								</div>
+
+								<c:if test="${lookupPayment.REGION == 1}">
+									<c:set var="REGIONNAME" value="율량로 주차장"></c:set>
+									<c:set var="IMG" value="img/Region_1.png"></c:set>
+								</c:if>
+								
+								<c:if test="${lookupPayment.REGION == 2}">
+									<c:set var="REGIONNAME" value="내수로 주차장"></c:set>
+									<c:set var="IMG" value="img/Region_2.png"></c:set>
+								</c:if>
+								
+								<c:if test="${lookupPayment.REGION == 3}">
+									<c:set var="REGIONNAME" value="복대로 주차장"></c:set>
+									<c:set var="IMG" value="img/Region_3.png"></c:set>
+								</c:if>
+								
+
 								<div id='productListWrapper6005511'
 									class='productListWrapper c-4 ratio-1to1'>
 
 									<div class='productListPage productListPage-1 now'>
-										<script>
-											var id;
-											var img;
-											var amount;
-											var regionname;
-											$(document)
-													.ready(
-															function() {
-																$('.thumb')
-																		.click(
-																				function(
-																						e) {
 
-																					id = e.target
-																							.getAttribute('id');
-
-																					if (id == 'region1_img') {
-																						img = jQuery(
-																								'#region2_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
-
-																					}
-																					if (id == 'region2_img') {
-																						img = jQuery(
-																								'#region2_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
-
-																					}
-																					if (id == 'region3_img') {
-																						img = jQuery(
-																								'#region3_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
-
-																					}
-																					
-																					var newurl = encodeURI("billing?img="
-																							+ img
-																							+ "&amount="
-																							+ amount
-																							+ "&regionname="
-																							+ regionname);
-																					
-																					
-																					location.href = newurl;
-																				});
-															});
-										</script>
-										<div class='shopProductWrapper' data-productNo='326815'>
+										
 											<div class='thumbDiv'>
-												<c:if test="${myPayment.REGION==1 }">
-													<img class='thumb img flexThumbnailSize' id="region1_img"
-														src='img/Region_1.png' alt="region1_img"
-														style='width: 100%; background-image: url(img/Region_1.png);' />
-												</c:if>
+												<c:if test="${lookupPayment !=null }">
+													<div
+														class="product field designSettingElement text-body shopCartInfo">
+														<div
+															class="tb-title heading-font designSettingElement shape">
+															<span class="name">상품 정보</span>
+														</div>
+														<div id="cartListDiv" class="tb-content">
+															<div class="info cartDiv designSettingElement shape"
+																id="cartDiv5831206">
+																<div class="product">
+																	<div class="img">
+																		<a href="/Parking/regionselect"> <img src="${IMG}"
+																			width="127.5px" height="79.47px">
+																		</a>
+																	</div>
+																	<div class="text">
+																		<div class="name">
+																			<a href="/Parking/regionselect">${REGIONNAME }</a>
+																		</div>
+																		<div class="option"></div>
+																		<div class="additionaloption"></div>
+																		<div class="option"></div>
+																	</div>
+																</div>
 
-												<c:if test="${myPayment.REGION==2 }">
-													<img class='thumb img flexThumbnailSize'
-														src='img/Region_2.png' alt="region2_img" id="region2_img"
-														style='width: 100%; background-image: url(img/Region_2.png);' />
-												</c:if>
-
-												<c:if test="${myPayment.REGION==3 }">
-													<img class='thumb img flexThumbnailSize'
-														src='img/Region_3.png' alt="region3_img" id="region3_img"
-														style='width: 100%; background-image: url(img/Region_3.png);' />
-												</c:if>
-												<div class='shopProductNameAndPriceDiv'>
-													<div class='shopProductNameAndPriceContent'>
-														<div class='shopProductNameAndPrice'>
-															<div class='shopProduct productName' id="regionName">${REGIONNAME}</div>
-															<div class="shopProduct price">
-																<span id="regionAmount">${AMOUNT}원</span>
 															</div>
-
+														</div>
+														<div class="tb-total clearfix">
+															<div class="info designSettingElement shape">
+																<div class="price">
+																	<div id="cartTotalProductPrice"
+																		class="content heading-font">₩
+																		${lookupPayment.AMOUNT}원</div>
+																</div>
+															</div>
+															<div class="total" style="margin-bottom: 0;"></div>
 														</div>
 													</div>
-												</div>
+												</c:if>
+												<c:if test="${lookupPayment == null }">
+											
+											결제할 미납요금이 없습니다.
+											</c:if>
+
+
+
 
 											</div>
-										</div>
 									</div>
 								</div>
 							</div>

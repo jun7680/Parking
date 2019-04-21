@@ -257,6 +257,19 @@ public class HomeController {
 		return "/amount/parkingout";
 
 	}
+	
+	@RequestMapping(value = "/lookup", method = RequestMethod.GET)
+	public String Lookup(Model model, AmountVO vo) throws Exception {
+		
+		AmountVO myvo = new AmountVO();
+		myvo = Amountservice.lookupPayment(vo);
+
+		System.out.println(myvo);
+		model.addAttribute("lookupPayment", myvo);
+		
+		return "/directcheck/directcheck";
+	}
+	
 
 	@Autowired
 	private AmountCheckService aService;
@@ -270,6 +283,8 @@ public class HomeController {
 
 		vo.setID(login.getID());
 		aService.updateCar1(vo);
+		
+		
 
 		return "/amount/carNumberCheck";
 

@@ -18,6 +18,9 @@
 		}
 	});
 </script>
+
+<link rel="stylesheet" type="text/css"
+	href="/ansi01/common/css/sub_common.css">
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
@@ -3178,16 +3181,21 @@ span.ui-spinner a.ui-spinner-button {
 								data-sectionNo='2015172' data-itemNo='5917333'
 								style='text-align: right'>
 								<c:if test="${member == null }">
-								<a href="login"><span style="color: white; font-size: 17px;">로그인</span></a>
-								<a href="step2"><span style="color: white; font-size: 17px;">회원가입</span></a>
+									<a href="login"><span
+										style="color: white; font-size: 17px;">로그인</span></a>
+									<a href="step2"><span
+										style="color: white; font-size: 17px;">회원가입</span></a>
 								</c:if>
-								
+
 								<c:if test="${member != null }">
-								<span style="color: white; font-size: 17px;">${member.NAME }님 환영합니다.</span>
-								<a href="logout"><span style="color: white; font-size: 15px; opacity:0.6">로그아웃</span></a>
+									<span style="color: white; font-size: 17px;">${member.NAME }님
+										환영합니다.</span>
+									<a href="logout"><span
+										style="color: white; font-size: 15px; opacity: 0.6">로그아웃</span></a>
 								</c:if>
 								<c:if test="${member.AUTH ==0 }">
-								<a href="payment"><span style="color: white; font-size: 15px; opacity:0.6">결제내역</span></a>
+									<a href="payment"><span
+										style="color: white; font-size: 15px; opacity: 0.6">결제내역</span></a>
 								</c:if>
 								<div id='itemElement5917333' class='item-element'
 									style='height: 68px;'></div>
@@ -3205,11 +3213,31 @@ span.ui-spinner a.ui-spinner-button {
 					<section id='section2015173' class='section' data-orderNo='2'>
 						<div data-columnNo='1' id='section2015173_column1'
 							class='customSectionColumn column-1'>
+							<div id="paymentLabel" style="text-align: center">
+								<h1>
+									<label>요금 조회</label>
+								</h1>
+							</div>
+
 							<div id='item5917335' class='item-wrapper spacer-element'
 								data-type='item' data-itemType='spacer-element' data-orderNo='1'
 								data-sectionNo='2015173' data-itemNo='5917335' style=''>
 								<div id='itemElement5917335' class='item-element'
-									style='height: 68px;'></div>
+									style='height: 68px;'>
+
+									<form role="form" method="get" autocomplete="off"
+										action="lookup">
+										<div class="search_form03" style="text-align: center">
+											<label for="CARNUMBER">차량번호입력</label> <input type="text"
+												placeholder="빈칸없이입력해주세요" name="CARNUMBER" id="CARNUMBER"
+												title="차량번호 입력" />
+											<button type="submit" title="새창으로열림">조회하기</button>
+										</div>
+									</form>
+
+
+
+								</div>
 							</div>
 							<div id='item5917336' class='item-wrapper text-title'
 								data-type='item' data-itemType='text-title' data-orderNo='2'
@@ -3283,7 +3311,8 @@ span.ui-spinner a.ui-spinner-button {
 							</div>
 						</div>
 						<div data-columnNo='2' id='section2015174_column2'
-							class='customSectionColumn column-2' onclick="location.href='regionselect'" style="cursor: pointer;">
+							class='customSectionColumn column-2'
+							onclick="location.href='regionselect'" style="cursor: pointer;">
 							<div id='item5917343' class='item-wrapper image' data-type='item'
 								data-itemType='image' data-orderNo='5' data-sectionNo='2015174'
 								data-itemNo='5917343' style='text-align: center;'>
@@ -3318,7 +3347,8 @@ span.ui-spinner a.ui-spinner-button {
 									style='height: 0px;'></div>
 							</div>
 						</div>
-						<div data-columnNo='3' id='section2015174_column3' onclick="location.href='feecalculation'" style="cursor: pointer;"
+						<div data-columnNo='3' id='section2015174_column3'
+							onclick="location.href='feecalculation'" style="cursor: pointer;"
 							class='customSectionColumn column-3'>
 							<div id='item5917347' class='item-wrapper image' data-type='item'
 								data-itemType='image' data-orderNo='9' data-sectionNo='2015174'
@@ -3421,7 +3451,7 @@ span.ui-spinner a.ui-spinner-button {
 								<div id='itemElement5917367' class='item-element'
 									style='height: 0px;'></div>
 							</div>
-							
+
 							<div id='item5917369' class='item-wrapper spacer-element'
 								data-type='item' data-itemType='spacer-element' data-orderNo='4'
 								data-sectionNo='2015180' data-itemNo='5917369' style=''>
@@ -3475,8 +3505,8 @@ span.ui-spinner a.ui-spinner-button {
 
 
 					</div>
-				
-					
+
+
 				</div>
 				<div class="column footer-right align-right"></div>
 			</div>
