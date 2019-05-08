@@ -17,7 +17,9 @@
 	 select AREA,
 	 		AMOUNT,
 	 		CARNUMBER,
-	 		REGION
+	 		REGION,
+	 		ID,
+	 		STARTTIME
 	 from PayInformation where ENDTIME IS NULL AND PAYMENT='N'
       ]]>
 	</select>
@@ -29,12 +31,42 @@
 	<update id="inputCarnumber1"
 		parameterType="com.spring.dto.AmountVO">
 	<![CDATA[
-		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0',ID=#{LOGINID} where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
+		update PayInformation SET CARNUMBER=#{CARNUMBER}, AMOUNT='0',ID=#{ID} where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
 		
 	
 	]]>
-
+	
 	</update>
+	
+	
+	
+	
+	<insert id="insertArea1">
+        <![CDATA[
+            INSERT INTO PayInformation
+            (
+                ID,
+                AMOUNT,
+                PAYMENT,
+                AREA,
+                CARNUMBER,
+                REGION,
+                STARTTIME
+                
+            )
+            VALUES
+            (
+                #{ID},
+               '0',
+                'N',
+                #{AREA},
+                #{CARNUMBER},
+                #{REGION},
+                #{STARTTIME}
+           
+            )
+        ]]>
+	</insert>
 	
 	<update id="inputCarnumber2"
 		parameterType="com.spring.dto.AmountVO">
@@ -124,6 +156,53 @@
 	]]>
 	</update>
 
+
+
+<!-- Nomember -->
+
+<update id="NoMemberinputCarnumber1"
+		parameterType="com.spring.dto.AmountVO">
+	<![CDATA[
+		update PayInformation SET CARNUMBER=#{CARNUMBER} where ENDTIME IS NULL AND AREA=#{AREA} AND REGION='1'
+		
+	
+	]]>
+	
+	
+
+	</update>
+	
+	
+	<insert id="NoMemberinsertArea1">
+        <![CDATA[
+            INSERT INTO PayInformation
+            (               
+                AMOUNT,
+                PAYMENT,
+                AREA,
+                CARNUMBER,
+                REGION,
+                STARTTIME
+            )
+            VALUES
+            (               
+               '0',
+                'N',
+                #{AREA},
+                #{CARNUMBER},
+                #{REGION},
+                #{STARTTIME}
+           
+            )
+        ]]>
+	</insert>
+
+
+	<select id="areaCheck" resultType="com.spring.dto.AmountVO">
+	 <![CDATA[
+	 select * from PayInformation where AREA=#{AREA} AND ENDTIME  IS NULL
+      ]]>
+	</select>
 
 
 

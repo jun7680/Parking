@@ -3332,104 +3332,206 @@ span.ui-spinner a.ui-spinner-button {
 								</div>
 								<div id='productListWrapper6005511'
 									class='productListWrapper c-4 ratio-1to1'>
+									<c:if test="${myPayment != null }">
+										<div class='productListPage productListPage-1 now'>
+											<script>
+												var id;
+												var img;
+												var amount;
+												var regionname;
+												$(document)
+														.ready(
+																function() {
+																	$('.thumb')
+																			.click(
+																					function(
+																							e) {
 
-									<div class='productListPage productListPage-1 now'>
-										<script>
-											var id;
-											var img;
-											var amount;
-											var regionname;
-											$(document)
-													.ready(
-															function() {
-																$('.thumb')
-																		.click(
-																				function(
-																						e) {
+																						id = e.target
+																								.getAttribute('id');
 
-																					id = e.target
-																							.getAttribute('id');
+																						if (id == 'region1_img') {
+																							img = jQuery(
+																									'#region2_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
 
-																					if (id == 'region1_img') {
-																						img = jQuery(
-																								'#region2_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
+																						}
+																						if (id == 'region2_img') {
+																							img = jQuery(
+																									'#region2_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
 
-																					}
-																					if (id == 'region2_img') {
-																						img = jQuery(
-																								'#region2_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
+																						}
+																						if (id == 'region3_img') {
+																							img = jQuery(
+																									'#region3_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
 
-																					}
-																					if (id == 'region3_img') {
-																						img = jQuery(
-																								'#region3_img')
-																								.attr(
-																										"src");
-																						amount = document
-																								.getElementById('regionAmount').innerHTML
-																						regionname = document
-																								.getElementById('regionName').innerHTML
+																						}
 
-																					}
-																					
-																					var newurl = encodeURI("billing?img="
-																							+ img
-																							+ "&amount="
-																							+ amount
-																							+ "&regionname="
-																							+ regionname);
-																					
-																					
-																					location.href = newurl;
-																				});
-															});
-										</script>
-										<div class='shopProductWrapper' data-productNo='326815'>
-											<div class='thumbDiv'>
-												<c:if test="${myPayment.REGION==1 }">
-													<img class='thumb img flexThumbnailSize' id="region1_img"
-														src='img/Region_1.png' alt="region1_img"
-														style='width: 100%; background-image: url(img/Region_1.png);' />
-												</c:if>
+																						var newurl = encodeURI("billing?img="
+																								+ img
+																								+ "&amount="
+																								+ amount
+																								+ "&regionname="
+																								+ regionname);
 
-												<c:if test="${myPayment.REGION==2 }">
-													<img class='thumb img flexThumbnailSize'
-														src='img/Region_2.png' alt="region2_img" id="region2_img"
-														style='width: 100%; background-image: url(img/Region_2.png);' />
-												</c:if>
+																						location.href = newurl;
+																					});
+																});
+											</script>
+											<div class='shopProductWrapper' data-productNo='326815'>
+												<div class='thumbDiv'>
+													<c:if test="${myPayment.REGION==1 }">
+														<img class='thumb img flexThumbnailSize' id="region1_img"
+															src='img/Region_1.png' alt="region1_img"
+															style='width: 100%; background-image: url(img/Region_1.png);' />
+													</c:if>
 
-												<c:if test="${myPayment.REGION==3 }">
-													<img class='thumb img flexThumbnailSize'
-														src='img/Region_3.png' alt="region3_img" id="region3_img"
-														style='width: 100%; background-image: url(img/Region_3.png);' />
-												</c:if>
-												<div class='shopProductNameAndPriceDiv'>
-													<div class='shopProductNameAndPriceContent'>
-														<div class='shopProductNameAndPrice'>
-															<div class='shopProduct productName' id="regionName">${REGIONNAME}</div>
-															<div class="shopProduct price">
-																<span id="regionAmount">${AMOUNT}원</span>
+													<c:if test="${myPayment.REGION==2 }">
+														<img class='thumb img flexThumbnailSize'
+															src='img/Region_2.png' alt="region2_img" id="region2_img"
+															style='width: 100%; background-image: url(img/Region_2.png);' />
+													</c:if>
+
+													<c:if test="${myPayment.REGION==3 }">
+														<img class='thumb img flexThumbnailSize'
+															src='img/Region_3.png' alt="region3_img" id="region3_img"
+															style='width: 100%; background-image: url(img/Region_3.png);' />
+													</c:if>
+													<div class='shopProductNameAndPriceDiv'>
+														<div class='shopProductNameAndPriceContent'>
+															<div class='shopProductNameAndPrice'>
+																<div class='shopProduct productName' id="regionName">${REGIONNAME}</div>
+																<div class="shopProduct price">
+																	<span id="regionAmount">${AMOUNT}원</span>
+																</div>
+
 															</div>
-
 														</div>
 													</div>
-												</div>
 
+												</div>
 											</div>
 										</div>
-									</div>
+
+									</c:if>
+									
+									<c:if test="${myPayment == null }">
+									
+									<div class='productListPage productListPage-1 now'>
+											<script>
+												var id;
+												var img;
+												var amount;
+												var regionname;
+												$(document)
+														.ready(
+																function() {
+																	$('.thumb')
+																			.click(
+																					function(
+																							e) {
+
+																						id = e.target
+																								.getAttribute('id');
+
+																						if (id == 'region1_img') {
+																							img = jQuery(
+																									'#region2_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
+
+																						}
+																						if (id == 'region2_img') {
+																							img = jQuery(
+																									'#region2_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
+
+																						}
+																						if (id == 'region3_img') {
+																							img = jQuery(
+																									'#region3_img')
+																									.attr(
+																											"src");
+																							amount = document
+																									.getElementById('regionAmount').innerHTML
+																							regionname = document
+																									.getElementById('regionName').innerHTML
+
+																						}
+
+																						var newurl = encodeURI("billing?img="
+																								+ img
+																								+ "&amount="
+																								+ amount
+																								+ "&regionname="
+																								+ regionname);
+
+																						location.href = newurl;
+																					});
+																});
+											</script>
+											<div class='shopProductWrapper' data-productNo='326815'>
+												<div class='thumbDiv'>
+													<c:if test="${myPayment.REGION==1 }">
+														<img class='thumb img flexThumbnailSize' id="region1_img"
+															src='img/Region_1.png' alt="region1_img"
+															style='width: 100%; background-image: url(img/Region_1.png);' />
+													</c:if>
+
+													<c:if test="${myPayment.REGION==2 }">
+														<img class='thumb img flexThumbnailSize'
+															src='img/Region_2.png' alt="region2_img" id="region2_img"
+															style='width: 100%; background-image: url(img/Region_2.png);' />
+													</c:if>
+
+													<c:if test="${myPayment.REGION==3 }">
+														<img class='thumb img flexThumbnailSize'
+															src='img/Region_3.png' alt="region3_img" id="region3_img"
+															style='width: 100%; background-image: url(img/Region_3.png);' />
+													</c:if>
+													<div class='shopProductNameAndPriceDiv'>
+														<div class='shopProductNameAndPriceContent'>
+															<div class='shopProductNameAndPrice'>
+																<div class='shopProduct productName' id="regionName">${REGIONNAME}</div>
+																<div class="shopProduct price">
+																	<span id="regionAmount">결제할 금액이 없습니다</span>
+																</div>
+
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									
+									</c:if>
 								</div>
 							</div>
 						</div>

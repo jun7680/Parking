@@ -59,25 +59,27 @@ public class HomeController {
 	String imgUrl = null;
 	String regionName = null;
 	String amount = null;
+	HttpSession oldSession = null;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model, HttpServletRequest req) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
-		session = req.getSession();
+		session = req.getSession(true);
 
+		// if(!session.equals(oldSession)) login = null;
 		if (login == null) {
-			session.setAttribute("member", null);
+			session.setAttribute("session", null);
 			System.out.println("login test f :" + session);
 			System.out.println("login test2 f:" + login);
 
-		} else {
-			session.setAttribute("member", login);
+		} else if (login != null && session != null) {
+			session.setAttribute("session", login);
 			model.addAttribute("member", login);
 			System.out.println("Id is ->" + login.getID());
 			loginid = login.getID();
 			System.out.println("login test :" + session);
 			System.out.println("login test2 :" + login);
+			oldSession = session;
 
 		}
 
@@ -147,10 +149,10 @@ public class HomeController {
 
 		String returnUrl = null;
 
-		if (login == null || login.equals(""))
-			returnUrl = "/error/requireLogin";
-		else
-			returnUrl = "/amount/regionselect";
+//		if (login == null || login.equals(""))
+//			returnUrl = "/error/requireLogin";
+//		else
+		returnUrl = "/amount/regionselect";
 
 		List<AmountVO> AmountList = Amountservice.selectAmount();
 		System.out.println(AmountList);
@@ -197,9 +199,9 @@ public class HomeController {
 		try {
 			userSer.register(regReq);
 			vo.setID(regReq.getId());
-			
+
 			Amountservice.insertAddCart(vo);
-			
+
 		} catch (AlreadyExistingEmailException e) {
 			errors.rejectValue("email", "duplicate", "이메일을 확인해 주세요.");
 			ModelAndView mv = new ModelAndView("/register/step2");
@@ -218,11 +220,24 @@ public class HomeController {
 		session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
+			session = null;
 			login = null;
 			System.out.println("성공?");
 
 		}
 		return "/login/logout";
+	}
+
+	@RequestMapping("/autologout")
+	public String Autologout(HttpServletRequest request) {
+		session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+			login = null;
+			System.out.println("성공?");
+
+		}
+		return "/login/autologout";
 	}
 
 	@Autowired
@@ -257,34 +272,55 @@ public class HomeController {
 		return "/amount/parkingout";
 
 	}
-	
+
 	@RequestMapping(value = "/lookup", method = RequestMethod.GET)
 	public String Lookup(Model model, AmountVO vo) throws Exception {
-		
+
 		AmountVO myvo = new AmountVO();
 		myvo = Amountservice.lookupPayment(vo);
 
 		System.out.println(myvo);
 		model.addAttribute("lookupPayment", myvo);
-		
+
 		return "/directcheck/directcheck";
 	}
-	
 
 	@Autowired
 	private AmountCheckService aService;
 
 	@RequestMapping(value = "/carNumberCheck1", method = RequestMethod.POST)
 	public String carnumber1(AmountVO vo) throws Exception {
+		long time = System.currentTimeMillis();
+		String nowTime = new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date());
 
-		System.out.println("car insert");
+		List<AmountVO> AmountList = Amountservice.selectAmount();
+		AmountVO areaCheck = aService.areaCheck(vo);
 
-		System.out.println(login.getID());
+		vo.setREGION("1");
+		if (login == null) {
 
-		vo.setID(login.getID());
-		aService.updateCar1(vo);
-		
-		
+			if (areaCheck.getAREA() == null) {
+				System.out.println(vo.getAREA());
+				vo.setSTARTTIME(nowTime);
+				aService.NoMemberinsertTime1(vo);
+				System.out.println("no member empty");
+			} else {
+				aService.NoMemberupdateCar1(vo);
+				System.out.println("no member not empty");
+			}
+
+		} else {
+			vo.setID(login.getID());
+			if (AmountList.size() == 0) {
+
+				vo.setSTARTTIME(nowTime);
+				aService.insertTime1(vo);
+				System.out.println("empty");
+			} else {
+				aService.updateCar1(vo);
+				System.out.println("not empty");
+			}
+		}
 
 		return "/amount/carNumberCheck";
 
@@ -315,12 +351,11 @@ public class HomeController {
 
 	@RequestMapping(value = "/feecalculation", method = RequestMethod.GET)
 	public String FeeCalculation(Model model, AmountVO vo) throws Exception {
-		LVO = null;
 
 		String returnUrl = null;
 
 		System.out.println("login?" + login);
-		if (login == null || login.equals(""))
+		if (login == null)
 			returnUrl = "/error/requireLogin";
 		else {
 			vo.setID(login.getID());
@@ -338,10 +373,10 @@ public class HomeController {
 
 	@RequestMapping(value = "/billing", method = RequestMethod.GET)
 	public String BillingScreen(Model model, AmountVO vo, CartVO CVO, HttpServletRequest request) throws Exception {
-	
+
 		Enumeration params = request.getParameterNames();
 		String strParam = "";
-		String value="";
+		String value = "";
 		while (params.hasMoreElements()) {
 			String name = (String) params.nextElement();
 			value = URLEncoder.encode(request.getParameter(name), "UTF-8");
@@ -353,8 +388,7 @@ public class HomeController {
 		regionName = request.getParameter("regionname");
 		System.out.println(amount + "billing screen");
 		CVO.setID(login.getID());
-		
-		
+
 		CartList = Amountservice.myCart(CVO);
 
 		String returnUrl = "/feepayment/billingscreen";

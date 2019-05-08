@@ -67,5 +67,26 @@ public class AmountDAOImpl extends AbstractDAO implements AmountDAO   {
 	public AmountVO lookupPayment(AmountVO vo) throws Exception{
 		return (AmountVO) selectOne("amount.lookup", vo);
 	}
+	
+	@Override
+	public void insertTime1(AmountVO vo) throws Exception{
+		sqlSession.insert("amount.insertArea1",vo);
+	}
+	
+	@Override
+	public void NoMemberinsertTime1(AmountVO vo) throws Exception{
+		sqlSession.insert("amount.NoMemberinsertArea1",vo);
+	}
+	
+	
+	@Override
+	public void NoMemberupdateCar1(AmountVO vo)throws Exception{
+		sqlSession.update("amount.NoMemberinputCarnumber1",vo);
+	}
+	
+	public AmountVO areaCheck(AmountVO vo) throws Exception{
+		return (AmountVO) selectOne("amount.areaCheck",vo);
+	}
+	
 
 }

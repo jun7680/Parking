@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+<%@ page session="true"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -8,6 +8,53 @@
 <head>
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible"
 	content="IE=edge" />
+
+
+<c:if test="${member !=null }">
+	<script>
+		// Logout Timer 객체 정의
+		var LogOutTimer = function() {
+			var S = {
+				timer : null,
+				limit : 1000 * 60 * 5,
+				fnc : function() {
+				},
+				start : function() {
+					S.timer = window.setTimeout(S.fnc, S.limit);
+				},
+				reset : function() {
+					window.clearTimeout(S.timer);
+					S.start();
+				}
+			};
+
+			document.onmousemove = function() {
+				S.reset();
+			};
+
+			return S;
+		}();
+
+		// 로그아웃 체크시간 설정
+		LogOutTimer.limit = 1000 * 60 * 1;
+
+		// 로그아웃 함수 설정
+		LogOutTimer.fnc = function() {
+			alert("자동로그아웃 되었습니다.");
+			document.location = "/Parking/autologout";
+		}
+
+		console.log(LogOutTimer);
+
+		// 로그아웃 타이머 실행
+		LogOutTimer.start();
+
+		function closePage() {
+			session.invalidate();
+			location.href = "/Parking/autologout"
+		}
+	</script>
+</c:if>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js?v=04020701"></script>
@@ -3174,12 +3221,10 @@ span.ui-spinner a.ui-spinner-button {
 								<div id='itemElement5917332' class='item-element' style=''></div>
 							</div>
 						</div>
-						<div data-columnNo='2' id='section2015172_column2'
-							class='customSectionColumn column-2'>
-							<div id='item5917333' class='item-wrapper spacer-element'
-								data-type='item' data-itemType='spacer-element' data-orderNo='7'
+						<div data-columnNo='2' >
+							<div data-type='item' data-itemType='spacer-element' data-orderNo='7'
 								data-sectionNo='2015172' data-itemNo='5917333'
-								style='text-align: right'>
+								style='text-align: right; float:right'>
 								<c:if test="${member == null }">
 									<a href="login"><span
 										style="color: white; font-size: 17px;">로그인</span></a>

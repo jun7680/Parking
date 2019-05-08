@@ -2,6 +2,9 @@
 <%@ page session="false"%>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Locale"%>
 
 <!DOCTYPE html>
 <html lang="utf-8">
@@ -3286,6 +3289,7 @@ span.ui-spinner a.ui-spinner-button {
 					</section>
 				</div>
 
+
 				<div id='sectionWrapper2044846'
 					class='section-wrapper sectionWrapper2044846 element-section productList-section'
 					data-orderNo='4' cid='section2044846'>
@@ -3315,66 +3319,113 @@ span.ui-spinner a.ui-spinner-button {
 									<c:set var="REGIONNAME" value="율량로 주차장"></c:set>
 									<c:set var="IMG" value="img/Region_1.png"></c:set>
 								</c:if>
-								
+
 								<c:if test="${lookupPayment.REGION == 2}">
 									<c:set var="REGIONNAME" value="내수로 주차장"></c:set>
 									<c:set var="IMG" value="img/Region_2.png"></c:set>
 								</c:if>
-								
+
 								<c:if test="${lookupPayment.REGION == 3}">
 									<c:set var="REGIONNAME" value="복대로 주차장"></c:set>
 									<c:set var="IMG" value="img/Region_3.png"></c:set>
 								</c:if>
-								
+
 
 								<div id='productListWrapper6005511'
 									class='productListWrapper c-4 ratio-1to1'>
 
+
 									<div class='productListPage productListPage-1 now'>
 
-										
-											<div class='thumbDiv'>
-												<c:if test="${lookupPayment !=null }">
-													<div
-														class="product field designSettingElement text-body shopCartInfo">
-														<div
-															class="tb-title heading-font designSettingElement shape">
-															<span class="name">상품 정보</span>
-														</div>
-														<div id="cartListDiv" class="tb-content">
-															<div class="info cartDiv designSettingElement shape"
-																id="cartDiv5831206">
-																<div class="product">
-																	<div class="img">
-																		<a href="/Parking/regionselect"> <img src="${IMG}"
-																			width="127.5px" height="79.47px">
-																		</a>
-																	</div>
-																	<div class="text">
-																		<div class="name">
-																			<a href="/Parking/regionselect">${REGIONNAME }</a>
-																		</div>
-																		<div class="option"></div>
-																		<div class="additionaloption"></div>
-																		<div class="option"></div>
-																	</div>
-																</div>
 
-															</div>
-														</div>
-														<div class="tb-total clearfix">
-															<div class="info designSettingElement shape">
-																<div class="price">
-																	<div id="cartTotalProductPrice"
-																		class="content heading-font">₩
-																		${lookupPayment.AMOUNT}원</div>
+										<div class='thumbDiv'>
+											<c:if test="${lookupPayment !=null }">
+												<c:set var="OSTARTTIME" value="${lookupPayment.STARTTIME}"></c:set>
+
+												<script>
+													
+												<%String getTime = (String) pageContext.getAttribute("OSTARTTIME");
+												int date=0;
+
+				int Hour = Integer.parseInt(getTime.substring(0, 2));
+				int Minute = Integer.parseInt(getTime.substring(3, 5));
+
+				SimpleDateFormat f = new SimpleDateFormat("HHmm", Locale.KOREA);
+				Date nowDate = new Date();
+				String fnowDate = f.format(nowDate);
+
+				int nHour = Integer.parseInt(fnowDate.substring(0, 2));
+				int nMinute = Integer.parseInt(fnowDate.substring(2, 4));
+
+				System.out.println("time 1 is : " + nHour);
+				System.out.println("time 1 is : " + nMinute);
+
+				System.out.println("time 1 is : " + Hour);
+				System.out.println("time 1 is : " + Minute);
+				int calHour = 0;
+				int calMinute = 0;
+				if (Hour > nHour)
+					calHour = ((nHour + 24) - Hour) * 6;
+				else if (Hour == nHour) 
+					calHour = 12 * 6;
+					else if (Hour < nHour)
+					calHour = ((nHour) - Hour) * 6;
+				else {
+
+				}
+				if(Hour+Minute == nHour+nMinute) date++;
+				else if(Minute == nMinute) calMinute = 0;
+
+				if (Minute > nMinute)
+					calMinute = Minute - nMinute / 10;
+				else if (Minute < nMinute)
+					calMinute = nMinute - Minute;
+
+				int sum = (calHour + calMinute) * 500;
+				pageContext.setAttribute("AMOUNT3", sum);%>
+													
+												</script>
+
+												<c:set var="AMOUNT3" value="${AMOUNT3 }"></c:set>
+												<div
+													class="product field designSettingElement text-body shopCartInfo">
+													<div
+														class="tb-title heading-font designSettingElement shape">
+														<span class="name">상품 정보</span>
+													</div>
+													<div id="cartListDiv" class="tb-content">
+														<div class="info cartDiv designSettingElement shape"
+															id="cartDiv5831206">
+															<div class="product">
+																<div class="img">
+																	<a href="/Parking/regionselect"> <img src="${IMG}"
+																		width="127.5px" height="79.47px">
+																	</a>
+																</div>
+																<div class="text">
+																	<div class="name">
+																		<a href="/Parking/regionselect">${REGIONNAME }</a>
+																	</div>
+																	<div class="option"></div>
+																	<div class="additionaloption"></div>
+																	<div class="option"></div>
 																</div>
 															</div>
-															<div class="total" style="margin-bottom: 0;"></div>
+
 														</div>
 													</div>
-												</c:if>
-												<c:if test="${lookupPayment == null }">
+													<div class="tb-total clearfix">
+														<div class="info designSettingElement shape">
+															<div class="price">
+																<div id="cartTotalProductPrice"
+																	class="content heading-font">₩ ${AMOUNT3}원</div>
+															</div>
+														</div>
+														<div class="total" style="margin-bottom: 0;"></div>
+													</div>
+												</div>
+											</c:if>
+											<c:if test="${lookupPayment == null }">
 											
 											결제할 미납요금이 없습니다.
 											</c:if>
@@ -3382,7 +3433,7 @@ span.ui-spinner a.ui-spinner-button {
 
 
 
-											</div>
+										</div>
 									</div>
 								</div>
 							</div>

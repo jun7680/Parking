@@ -11,11 +11,20 @@ public class AmountVO {
 	private String ENDTIME;
 	private String REGION;
 	private String ID;
+	private String STARTTIME;
+	
+	
 	
 	
 	
 
 	
+	public String getSTARTTIME() {
+		return STARTTIME;
+	}
+	public void setSTARTTIME(String STARTTIME) {
+		this.STARTTIME = STARTTIME;
+	}
 	public String getID() {
 		return ID;
 	}

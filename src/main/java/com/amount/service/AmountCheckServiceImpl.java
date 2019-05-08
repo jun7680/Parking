@@ -72,6 +72,30 @@ public class AmountCheckServiceImpl implements AmountCheckService{
 		return dao.lookupPayment(vo);
 	}
 	
+	@Override
+	public void insertTime1(AmountVO vo) throws Exception{
+		dao.insertTime1(vo);
+	}
+	
+	
+	
+	@Override
+	public void NoMemberupdateCar1(AmountVO vo) throws Exception{
+		dao.NoMemberupdateCar1(vo);
+	}
+	
+	
+	@Override
+	public void NoMemberinsertTime1(AmountVO vo) throws Exception{
+		dao.NoMemberinsertTime1(vo);
+	}
+	
+	@Override
+	public AmountVO areaCheck(AmountVO vo) throws Exception{
+		return dao.areaCheck(vo);
+	}
+	
+	
 	
 
 }

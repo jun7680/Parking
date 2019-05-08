@@ -27,5 +27,13 @@ public interface AmountDAO {
 	public void insertAddCart(CartVO vo) throws Exception;
 	
 	public AmountVO lookupPayment(AmountVO vo) throws Exception;
+	
+	public void insertTime1(AmountVO vo) throws Exception;
+	
+	public void NoMemberinsertTime1(AmountVO vo) throws Exception;
+	
+	public void NoMemberupdateCar1(AmountVO vo) throws Exception;
+	
+	public AmountVO areaCheck(AmountVO vo) throws Exception;
 
 }
