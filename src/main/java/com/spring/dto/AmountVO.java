@@ -12,13 +12,16 @@ public class AmountVO {
 	private String REGION;
 	private String ID;
 	private String STARTTIME;
+	private String STARTDATE;
 	
 	
-	
-	
-	
-
-	
+		
+	public String getSTARTDATE() {
+		return STARTDATE;
+	}
+	public void setSTARTDATE(String STARTDATE) {
+		this.STARTDATE = STARTDATE;
+	}
 	public String getSTARTTIME() {
 		return STARTTIME;
 	}

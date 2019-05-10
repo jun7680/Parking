@@ -8,9 +8,50 @@
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible"
 	content="IE=edge" />
 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.6/webfont.js?v=04020701"></script>
-	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#login2").click(function() {
+		var form_data = {
+			ID: document.getElementById("ID").value,
+			PW: document.getElementById("PW").value,
+			
+		};
+		
+		console.log(form_data);
+		$.ajax({
+			type: "POST",
+			url: "http://203.255.92.139:8080/ParkingAPI/rest/SystemAPI/Login",
+			dataType: 'json',
+			data: form_data,
+			success: function(result) {
+				console.log(result+"   is result");
+				//var RESULT =JSON.parse(result);
+				var HEAD = result.HEAD;
+				console.log(HEAD);
+				
+				var STATUS_CODE = HEAD.STATUS_CODE;
+				if(STATUS_CODE == 100) {
+					alert("success");
+					//$("#message").html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
+					//$("#form1").slideUp('slow');
+				}
+				else {
+					console.log("????");
+
+					//$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
+
+
 <script>
 	WebFont.load({
 		google : {
@@ -3019,8 +3060,7 @@ span.ui-spinner a.ui-spinner-button {
 				<div class="column header-left">
 
 					<a id="headerLogo" class="headerLogo desktop site-element"
-						data-itemType="logo" href="/Parking"> <span
-						class="site-name">Q-Park</span>
+						data-itemType="logo" href="/Parking"> <span class="site-name">Q-Park</span>
 					</a>
 
 
@@ -3080,13 +3120,8 @@ span.ui-spinner a.ui-spinner-button {
 
 
 				</div>
-				<div class="column header-center">
-
-
-				</div>
-				<div class="column header-right">
-
-				</div>
+				<div class="column header-center"></div>
+				<div class="column header-right"></div>
 			</div>
 			<div class="row row-search mobile">
 				<div
@@ -3103,21 +3138,21 @@ span.ui-spinner a.ui-spinner-button {
 
 		</div>
 
-		
+
 		<div id="displayCanvas" class="desktop" data-viewport="desktop">
 
 
 
 
 
-			<div id="login" class="login wrapper">
+			<div class="login wrapper">
 				<div class="column-wrapper one-column">
 					<div class="login field">
 						<div class="header designSettingElement text-title">
 							<span class="title">로그인</span>
 						</div>
 						<div class="content designSettingElement text-body">
-							<form role="form" method="post" autocomplete="off"
+							<form  id="login" role="form" method="post" autocomplete="off"
 								action="loginCheck">
 								<div class="row">
 									<label for="ID"><span class="title">ID</span></label> <input
@@ -3138,15 +3173,6 @@ span.ui-spinner a.ui-spinner-button {
 
 							</form>
 
-							<!-- 
-
-							<div class="find-pw">
-								<a href="/miniromi/findPassword"
-									class="designSettingElement text-link">비밀번호를 잊으셨나요?</a>
-							</div>
-							 -->
-
-
 							<div class="checkbox-wrapper agreeCheckBox_fb hide clearfix">
 								<div class="checkbox">
 									<input type="checkbox" id="agreeCheck1_fb"
@@ -3154,9 +3180,8 @@ span.ui-spinner a.ui-spinner-button {
 								</div>
 								<label for="agreeCheck1_fb"> <a href=""
 									class="designSettingElement text-link" target="_blank">이용약관</a>과
-									<a href="/"
-									class="designSettingElement text-link" target="_blank">개인정보
-										수집 및 이용</a>에 동의합니다.
+									<a href="/" class="designSettingElement text-link"
+									target="_blank">개인정보 수집 및 이용</a>에 동의합니다.
 								</label>
 							</div>
 							<div class="checkbox-wrapper agreeCheckBox_fb hide clearfix">
@@ -3166,15 +3191,16 @@ span.ui-spinner a.ui-spinner-button {
 								</div>
 								<label for="agreeCheck2_fb">만 14세 이상입니다.</label>
 							</div>
-						
+
 							<div id="loginSignupErrorMsg" class="error-msg"></div>
 
 							<div class="btn-wrapper">
 								<a class="btn_signup" href="/Parking/step2">
-									<button class="designSettingElement button outline">회원 가입하기</button>
+									<button class="designSettingElement button outline">회원
+										가입하기</button>
 								</a>
 							</div>
-							
+
 						</div>
 					</div>
 				</div>

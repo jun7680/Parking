@@ -19,7 +19,8 @@
 	 		CARNUMBER,
 	 		REGION,
 	 		ID,
-	 		STARTTIME
+	 		STARTTIME,
+	 		STARTDATE
 	 from PayInformation where ENDTIME IS NULL AND PAYMENT='N'
       ]]>
 	</select>
@@ -182,7 +183,8 @@
                 AREA,
                 CARNUMBER,
                 REGION,
-                STARTTIME
+                STARTTIME,
+                STARTDATE
             )
             VALUES
             (               
@@ -191,7 +193,8 @@
                 #{AREA},
                 #{CARNUMBER},
                 #{REGION},
-                #{STARTTIME}
+                #{STARTTIME},
+                #{STARTDATE}
            
             )
         ]]>

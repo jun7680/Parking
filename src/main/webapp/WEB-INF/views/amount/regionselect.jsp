@@ -3454,7 +3454,7 @@ span.ui-spinner a.ui-spinner-button {
 								<div id='productListWrapper6005511'
 									class='productListWrapper c-4 ratio-1to1'>
 									<div class='productListPage productListPage-1 now'>
-										<div
+										<div background="img/Chungju.png"
 											style="height: auto; width: 900px; border: 1px solid black;"
 											onclick="location.href='check1'">
 											<canvas id="1Area" width="1000" height="200"></canvas>
@@ -3463,8 +3463,10 @@ span.ui-spinner a.ui-spinner-button {
 										<div
 											style="height: auto; width: 900px; border: 1px solid black;"
 											onclick="location.href='check2'">
+											<!-- 
 											<canvas id="2Area" width="1000" height="200"></canvas>
 											<p>${6-sum2}자리비어있습니다.</p>
+											 -->
 										</div>
 
 									</div>

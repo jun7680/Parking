@@ -8,6 +8,44 @@
 <head>
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible"
 	content="IE=edge" />
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#search2").click(function() {
+		var form_data = {
+			CARNUMBER: document.getElementById("CARNUMBER").value,
+			
+		};
+		
+		console.log(form_data);
+		$.ajax({
+			type: "POST",
+			url: "http://203.255.92.139:8080/ParkingAPI/rest/SystemAPI/CarSearch",
+			dataType: 'json',
+			data: form_data,
+			success: function(result) {
+				console.log(result+"   is result");
+				//var RESULT =JSON.parse(result);
+				var HEAD = result.HEAD;
+				console.log(HEAD);
+				
+				var STATUS_CODE = HEAD.STATUS_CODE;
+				if(STATUS_CODE == 100) {
+					alert("success");
+					
+				}
+				else {
+					console.log("????");
+
+					//$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
 
 
 <c:if test="${member !=null }">
@@ -3270,7 +3308,7 @@ span.ui-spinner a.ui-spinner-button {
 								<div id='itemElement5917335' class='item-element'
 									style='height: 68px;'>
 
-									<form role="form" method="get" autocomplete="off"
+									<form role="form" method="get" autocomplete="off" id="search"
 										action="lookup">
 										<div class="search_form03" style="text-align: center">
 											<label for="CARNUMBER">차량번호입력</label> <input type="text"

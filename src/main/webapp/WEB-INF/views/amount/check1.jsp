@@ -18,10 +18,85 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta http-equiv="refresh" content="59">
 
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#in").click(function() {
+		var form_data = {
+			AREA: document.getElementById("AREA").value,
+			CARNUMBER: document.getElementById("CARNUMBER").value,
+			PARKINGCHECK:'0'
+			
+		};
+		
+		console.log(form_data);
+		$.ajax({
+			type: "POST",
+			url: "http://203.255.92.139:8080/ParkingAPI/rest/SystemAPI/accessTime",
+			dataType: 'json',
+			data: form_data,
+			success: function(result) {
+				console.log(result+"   is result");
+				//var RESULT =JSON.parse(result);
+				var HEAD = result.HEAD;
+				console.log(HEAD);				
+				var STATUS_CODE = HEAD.STATUS_CODE;
+				if(STATUS_CODE == 100) {
+					alert("success");
+					//$("#message").html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
+					//$("#form1").slideUp('slow');
+				}
+				else {
+					console.log("????");
 
-<%
-int date=0;
-%>
+					//$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#out").click(function() {
+		var form_data = {
+			AREA: document.getElementById("AREA").value,
+			PARKINGCHECK:'1'
+			
+		};
+		
+		console.log(form_data);
+		$.ajax({
+			type: "POST",
+			url: "http://203.255.92.139:8080/ParkingAPI/rest/SystemAPI/accessTime",
+			dataType: 'json',
+			data: form_data,
+			success: function(result) {
+				console.log(result+"   is result");
+				//var RESULT =JSON.parse(result);
+				var HEAD = result.HEAD;
+				console.log(HEAD);
+				
+				var STATUS_CODE = HEAD.STATUS_CODE;
+				if(STATUS_CODE == 100) {
+					alert("success");
+					//$("#message").html("<p style='color:green;font-weight:bold'>로그인 성공!</p>");
+					//$("#form1").slideUp('slow');
+				}
+				else {
+					console.log("????");
+
+					//$("#message").html("<p style='color:red'>아이디 또는 비밀번호가 잘못되었습니다.</p>");	
+				}
+			}
+		});
+		return false;
+	});
+});
+</script>
 
 <meta charset="UTF-8">
 <title>주차요금 확인</title>
@@ -187,55 +262,45 @@ int date=0;
 
 				<c:set var="CARNUMBER1" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME}"></c:set>
-
-				
+				<c:set var="STARTDATE" value="${AmountList.STARTDATE}"></c:set>
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) {
-							calHour = 12 * 6;
-							date++;
-						}else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
-						else if(Minute == nMinute) calMinute = 0;
-						
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT1", sum);
-						
-						
-									
-						
-						
-						%>
+
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT1", sum1);%>
 					
 				</script>
 
@@ -243,116 +308,100 @@ int date=0;
 			</c:if>
 			<c:if test="${AmountList.AREA ==2}">
 				<c:set var="AREA2" value="${AmountList.AREA}"></c:set>
-
+				<c:set var="STARTDATE" value="${AmountList.STARTDATE}"></c:set>
 				<c:set var="CARNUMBER2" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME }"></c:set>
 
-				
+
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) {
-							calHour = 12 * 6;
-							date++;
-						}else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
-						else if(Minute == nMinute) calMinute = 0;
-						
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT2", sum);
-						
-						
-									
-						
-						
-						%>
+
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT2", sum1);%>
 					
 				</script>
 
 				<c:set var="AMOUNT2" value="${AMOUNT2}"></c:set>
 			</c:if>
+
 			<c:if test="${AmountList.AREA ==3}">
 				<c:set var="AREA3" value="${AmountList.AREA}"></c:set>
 				<c:set var="CARNUMBER3" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME }"></c:set>
+				<c:set var="STARTDATE" value="${AmountList.STARTDATE}"></c:set>
 
-				
+
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) {
-							calHour = 12 * 6;
-							date++;
-						}else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
-						else if(Minute == nMinute) calMinute = 0;
-						
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT3", sum);
-						
-						
-									
-						
-						
-						%>
+
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT3", sum1);%>
 					
 				</script>
 
@@ -362,55 +411,47 @@ int date=0;
 				<c:set var="AREA4" value="${AmountList.AREA}"></c:set>
 				<c:set var="CARNUMBER4" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME }"></c:set>
+				<c:set var="STARTDATE" value="${AmountList.STARTDATE}"></c:set>
 
-				
+
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) {
-							calHour = 12 * 6;
-							date++;
-						}else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
 
-						else if(Minute == nMinute) calMinute = 0;
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT4", sum);
-						
-						
-									
-						
-						
-						%>
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT4", sum1);%>
 					
 				</script>
 
@@ -421,52 +462,45 @@ int date=0;
 				<c:set var="CARNUMBER5" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME }"></c:set>
 
+				<c:set var="STARTDATE" value="${AmountList.STARTDATE}"></c:set>
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) calHour = 12 * 6;
-						else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Hour+Minute == nHour+nMinute) date++;
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
-						else if(Minute == nMinute) calMinute = 0;
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT5", sum);
-						
-						
-									
-						
-						
-						%>
+
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT5", sum1);%>
 					
 				</script>
 
@@ -476,56 +510,47 @@ int date=0;
 				<c:set var="AREA6" value="${AmountList.AREA}"></c:set>
 				<c:set var="CARNUMBER6" value="${AmountList.CARNUMBER }"></c:set>
 				<c:set var="OSTARTTIME" value="${AmountList.STARTTIME }"></c:set>
+				<c:set var="STARTDATE" value = "${AmountList.STARTDATE}"></c:set>
 
-				
+
 				<script>
 					
-			
-			
-						
-						<%
-						String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-						
-						int Hour = Integer.parseInt(getTime.substring(0,2));
-						int Minute = Integer.parseInt(getTime.substring(3,5));
-						
-						SimpleDateFormat f = new SimpleDateFormat("HHmm",Locale.KOREA);
-						Date nowDate = new Date();
-						String fnowDate = f.format(nowDate);
-						
-						int nHour = Integer.parseInt(fnowDate.substring(0,2));
-						int nMinute = Integer.parseInt(fnowDate.substring(2,4));
-						
-						System.out.println("time 1 is : "+nHour);
-						System.out.println("time 1 is : "+nMinute);
-						
-						
-						System.out.println("time 1 is : "+Hour);
-						System.out.println("time 1 is : "+Minute);
-						int calHour=0;
-						int calMinute=0;
-						if(Hour >nHour) calHour = ((nHour+24) - Hour) * 6;
-						else if(Hour == nHour) {
-							calHour = 12 * 6;
-							date++;
-						}else if(Hour< nHour) calHour = ((nHour)- Hour) *6;
-						else{
-							
+				<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+								+ (String) pageContext.getAttribute("OSTARTTIME");
+						//현재시간 Date
+						String subDate = reqDateStr.replace("-", "");
+						String subDate2 = subDate.replace(":", "");
+						String subDate3 = subDate2.replaceAll(" ", "");
+						System.out.println("요청시간111111111 : " + subDate3);
+						Date curDate = new Date();
+						SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+						//요청시간을 Date로 parsing 후 time가져오기
+						Date reqDate = new Date();
+						long reqDateTime = 0;
+						try {
+							reqDate = dateFormat.parse(subDate3);
+							reqDateTime = reqDate.getTime();
+							//현재시간을 요청시간의 형태로 format 후 time 가져오기
+							curDate = dateFormat.parse(dateFormat.format(curDate));
+						} catch (Exception e) {
+							e.printStackTrace();
 						}
-						
-						if(Minute > nMinute) calMinute = Minute - nMinute / 10;
-						else if(Minute < nMinute) calMinute = nMinute - Minute;
-						else if(Minute == nMinute) calMinute = 0;
-						
-						int sum =(calHour + calMinute)*500;
-						pageContext.setAttribute("AMOUNT6", sum);
-						
-						if(date !=0) System.out.println(date);
-							
-									
-						
-						
-						%>
+
+						long curDateTime = curDate.getTime();
+						//분으로 표현
+						long minute = 0;
+						if (curDateTime < reqDateTime)
+							minute = (reqDateTime - curDateTime) / 60000;
+						else if (curDateTime > reqDateTime)
+							minute = (curDateTime - reqDateTime) / 60000;
+
+						System.out.println("요청시간 : " + reqDate);
+						System.out.println("현재시간 : " + curDate);
+						System.out.println(minute + "분 차이");
+
+						long sum1 = minute / 10 * 500;
+						System.out.println("dyrmadms ->" + sum1);
+						pageContext.setAttribute("AMOUNT6", sum1);%>
 					
 				</script>
 
@@ -749,7 +774,7 @@ int date=0;
 
 		<div id="pLayout">
 
-			<form role="form" method="post" action="carNumberCheck1">
+			<form role="form" method="post" action="carNumberCheck1" id="">
 				<p>
 					<label for="AREA">주차 구역</label> <input type="text" id="AREA"
 						name="AREA" />
@@ -760,7 +785,7 @@ int date=0;
 
 				</p>
 				<p>
-					<button type="submit">주차</button>
+					<button  type="submit">주차</button>
 				</p>
 
 			</form>
@@ -768,7 +793,7 @@ int date=0;
 		</div>
 
 		<div id="poutLayout">
-			<form role="form" method="post" action="parkingout1">
+			<form role="form" method="post" action="parkingout1" id="">
 				<p>
 					<label for="AREA">주차 구역</label> <input type="text" id="AREA"
 						name="AREA" />

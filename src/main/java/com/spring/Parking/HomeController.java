@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,6 +39,7 @@ import com.user.service.UserService;
 /**
  * Handles requests for the application home page.
  */
+@CrossOrigin(origins="*")
 @Controller
 public class HomeController {
 
@@ -116,6 +118,7 @@ public class HomeController {
 		}
 
 		System.out.println("login test 1 ->" + login);
+	
 
 		return returnUrl;
 	}
@@ -248,7 +251,7 @@ public class HomeController {
 		System.out.println("car insert");
 
 		Calendar time = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
 		vo.setENDTIME(dateFormat.format(time.getTime()));
 
@@ -263,7 +266,7 @@ public class HomeController {
 		System.out.println("car insert");
 
 		Calendar time = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
 		vo.setENDTIME(dateFormat.format(time.getTime()));
 
@@ -278,8 +281,10 @@ public class HomeController {
 
 		AmountVO myvo = new AmountVO();
 		myvo = Amountservice.lookupPayment(vo);
+		
+		
 
-		System.out.println(myvo);
+		System.out.println(myvo+"amount check");
 		model.addAttribute("lookupPayment", myvo);
 
 		return "/directcheck/directcheck";
@@ -293,15 +298,19 @@ public class HomeController {
 		long time = System.currentTimeMillis();
 		String nowTime = new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date());
 
+		String nowDate = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
+
 		List<AmountVO> AmountList = Amountservice.selectAmount();
 		AmountVO areaCheck = aService.areaCheck(vo);
 
 		vo.setREGION("1");
+		vo.setSTARTTIME(nowTime);
+		vo.setSTARTDATE(nowDate);
 		if (login == null) {
 
-			if (areaCheck.getAREA() == null) {
-				System.out.println(vo.getAREA());
-				vo.setSTARTTIME(nowTime);
+			if (areaCheck == null) {
+				
+				
 				aService.NoMemberinsertTime1(vo);
 				System.out.println("no member empty");
 			} else {
@@ -312,8 +321,6 @@ public class HomeController {
 		} else {
 			vo.setID(login.getID());
 			if (AmountList.size() == 0) {
-
-				vo.setSTARTTIME(nowTime);
 				aService.insertTime1(vo);
 				System.out.println("empty");
 			} else {

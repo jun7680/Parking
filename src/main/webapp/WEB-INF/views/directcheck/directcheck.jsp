@@ -9,6 +9,9 @@
 <!DOCTYPE html>
 <html lang="utf-8">
 <head>
+<%
+	int date = 0;
+%>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <meta http-equiv="X-UA-Compatible" id="X-UA-Compatible"
@@ -3341,52 +3344,50 @@ span.ui-spinner a.ui-spinner-button {
 										<div class='thumbDiv'>
 											<c:if test="${lookupPayment !=null }">
 												<c:set var="OSTARTTIME" value="${lookupPayment.STARTTIME}"></c:set>
+												<c:set var="STARTDATE" value="${lookupPayment.STARTDATE}"></c:set>
 
 												<script>
 													
-												<%String getTime = (String) pageContext.getAttribute("OSTARTTIME");
-												int date=0;
-
-				int Hour = Integer.parseInt(getTime.substring(0, 2));
-				int Minute = Integer.parseInt(getTime.substring(3, 5));
-
-				SimpleDateFormat f = new SimpleDateFormat("HHmm", Locale.KOREA);
-				Date nowDate = new Date();
-				String fnowDate = f.format(nowDate);
-
-				int nHour = Integer.parseInt(fnowDate.substring(0, 2));
-				int nMinute = Integer.parseInt(fnowDate.substring(2, 4));
-
-				System.out.println("time 1 is : " + nHour);
-				System.out.println("time 1 is : " + nMinute);
-
-				System.out.println("time 1 is : " + Hour);
-				System.out.println("time 1 is : " + Minute);
-				int calHour = 0;
-				int calMinute = 0;
-				if (Hour > nHour)
-					calHour = ((nHour + 24) - Hour) * 6;
-				else if (Hour == nHour) 
-					calHour = 12 * 6;
-					else if (Hour < nHour)
-					calHour = ((nHour) - Hour) * 6;
-				else {
-
+												<%String reqDateStr = (String) pageContext.getAttribute("STARTDATE") + " "
+						+ (String) pageContext.getAttribute("OSTARTTIME");
+				//현재시간 Date
+				String subDate = reqDateStr.replace("-", "");
+				String subDate2 = subDate.replace(":", "");
+				String subDate3 = subDate2.replaceAll(" ", "");
+				System.out.println("요청시간111111111 : " + subDate3);
+				Date curDate = new Date();
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA);
+				//요청시간을 Date로 parsing 후 time가져오기
+				Date reqDate = new Date();
+				long reqDateTime = 0;
+				try {
+					reqDate = dateFormat.parse(subDate3);
+					reqDateTime = reqDate.getTime();
+					//현재시간을 요청시간의 형태로 format 후 time 가져오기
+					curDate = dateFormat.parse(dateFormat.format(curDate));
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				if(Hour+Minute == nHour+nMinute) date++;
-				else if(Minute == nMinute) calMinute = 0;
 
-				if (Minute > nMinute)
-					calMinute = Minute - nMinute / 10;
-				else if (Minute < nMinute)
-					calMinute = nMinute - Minute;
+				long curDateTime = curDate.getTime();
+				//분으로 표현
+				long minute = 0;
+				if (curDateTime < reqDateTime)
+					minute = (reqDateTime - curDateTime) / 60000;
+				else if (curDateTime > reqDateTime)
+					minute = (curDateTime - reqDateTime) / 60000;
 
-				int sum = (calHour + calMinute) * 500;
-				pageContext.setAttribute("AMOUNT3", sum);%>
+				System.out.println("요청시간 : " + reqDate);
+				System.out.println("현재시간 : " + curDate);
+				System.out.println(minute + "분 차이");
+
+				long sum1 = minute / 10 * 500;
+				System.out.println("dyrmadms ->" + sum1);
+				pageContext.setAttribute("AMOUNT", sum1);%>
 													
 												</script>
 
-												<c:set var="AMOUNT3" value="${AMOUNT3 }"></c:set>
+												<c:set var="AMOUNT" value="${AMOUNT }"></c:set>
 												<div
 													class="product field designSettingElement text-body shopCartInfo">
 													<div
@@ -3418,7 +3419,7 @@ span.ui-spinner a.ui-spinner-button {
 														<div class="info designSettingElement shape">
 															<div class="price">
 																<div id="cartTotalProductPrice"
-																	class="content heading-font">₩ ${AMOUNT3}원</div>
+																	class="content heading-font">₩ ${AMOUNT}원</div>
 															</div>
 														</div>
 														<div class="total" style="margin-bottom: 0;"></div>
